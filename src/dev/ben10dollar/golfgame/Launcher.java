@@ -7,7 +7,8 @@ public class Launcher {
     public static void main(String[] args) {
         //actually starts up (launches) the game
 
-        new Game("Golf Game", 300, 300);
+        Game game = new Game("Golf Game", 300, 300);
+        game.start();
     }
 
 }

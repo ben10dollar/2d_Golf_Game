@@ -40,4 +40,10 @@ public class Display {
         //packs all of the canvas into the frame
     }
 
+
+
+    //___Getters and Setters___
+    public Canvas getCanvas() {
+        return canvas;
+    }
 }
