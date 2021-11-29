@@ -1,33 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f4791e3-f54a-4968-9442-b1d7048f3c6e" name="Default Changelist" comment="" />
+    <list default="true" id="76424916-2d86-4c63-ad2f-99f2fd06016b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/2d_Golf_Game.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/ben10dollar/golfgame/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/ben10dollar/golfgame/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/2d_Golf_Game.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/.idea/2d_Golf_Game.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/out/production/2d_Golf_Game/dev/ben10dollar/golfgame/Launcher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/out/production/2d_Golf_Game/dev/ben10dollar/golfgame/display/Display.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/src/dev/ben10dollar/golfgame/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/src/dev/ben10dollar/golfgame/Launcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2d_Golf_Game/src/dev/ben10dollar/golfgame/display/Display.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="21ZYHdn7ftK5EURoZumiFNo1XBb" />
+  <component name="ProjectId" id="21ZQBLwJ79nv3t6EzpheATOGuSg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/2d_Golf_Game" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nsten\OneDrive\Desktop\2d_Golf_Game" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Run" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="dev.ben10dollar.golfgame.Launcher" />
+      <module name="2d_Golf_Game" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6f4791e3-f54a-4968-9442-b1d7048f3c6e" name="Default Changelist" comment="" />
-      <created>1638149991667</created>
+      <changelist id="76424916-2d86-4c63-ad2f-99f2fd06016b" name="Default Changelist" comment="" />
+      <created>1638145994847</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1638149991667</updated>
+      <updated>1638145994847</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
   </component>
 </project>
