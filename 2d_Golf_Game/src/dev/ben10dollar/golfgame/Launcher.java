@@ -1,0 +1,13 @@
+package dev.ben10dollar.golfgame;
+
+import dev.ben10dollar.golfgame.display.Display;
+
+public class Launcher {
+
+    public static void main(String[] args) {
+        //actually starts up (launches) the game
+
+        new Game("Golf Game", 300, 300);
+    }
+
+}
