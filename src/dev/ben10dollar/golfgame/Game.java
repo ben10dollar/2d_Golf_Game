@@ -1,6 +1,7 @@
 package dev.ben10dollar.golfgame;
 
 import dev.ben10dollar.golfgame.display.Display;
+import dev.ben10dollar.golfgame.graphics.Assets;
 import dev.ben10dollar.golfgame.graphics.ImageLoader;
 import dev.ben10dollar.golfgame.graphics.SpriteSheet;
 
@@ -25,7 +26,6 @@ public class Game implements Runnable {
     //"hidden" computer screen within computer (actual just data of a screen)
     private int numOfBuffers = 3;
     private Graphics g;
-    private SpriteSheet spriteSheet;
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -39,7 +39,6 @@ public class Game implements Runnable {
         //starts game loop: updates all variables -> renders everything to screen, on repeat
 
         display = new Display(title, width, height);
-        spriteSheet = new SpriteSheet(ImageLoader.loadImage("res/textures/Sprite_Sheet.png"));
     }
 
     private void update() {
@@ -62,7 +61,8 @@ public class Game implements Runnable {
         //Draw here
 
         g.drawRect(10, 50 ,50, 70);
-        g.drawImage(spriteSheet, 8, 8, null);
+        g.drawImage(Assets.grass, 100, 100, 100, 100, null);
+
 
         //Stop drawing
 
