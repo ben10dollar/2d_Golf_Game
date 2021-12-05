@@ -2,12 +2,13 @@ package dev.ben10dollar.golfgame;
 
 import dev.ben10dollar.golfgame.display.Display;
 import dev.ben10dollar.golfgame.graphics.Assets;
-import dev.ben10dollar.golfgame.graphics.ImageLoader;
-import dev.ben10dollar.golfgame.graphics.SpriteSheet;
+import dev.ben10dollar.golfgame.states.GameState;
+import dev.ben10dollar.golfgame.states.MenuState;
+import dev.ben10dollar.golfgame.states.SettingsState;
+import dev.ben10dollar.golfgame.states.State;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 public class Game implements Runnable {
     //main class of the golf game
@@ -27,6 +28,10 @@ public class Game implements Runnable {
     private int numOfBuffers = 3;
     private Graphics g;
 
+    private State gameState;
+    private State menuState;
+    private State settingsState;
+
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -39,13 +44,19 @@ public class Game implements Runnable {
         //starts game loop: updates all variables -> renders everything to screen, on repeat
 
         display = new Display(title, width, height);
-    }
+        Assets.init();
 
-    private void update() {
-        //updates every variable for the game
-        //sometimes represented by "tick()"
+        gameState = new GameState();
+        menuState = new MenuState();
+        settingsState = new SettingsState();
+        State.setState(gameState);
     }
+    private void tick() {
+        //updates every variable for the current game state
 
+        if(State.getState() != null)
+            State.getState().tick();
+    }
     private void render() {
         //specific method to draw graphics
         bs = display.getCanvas().getBufferStrategy();
@@ -58,23 +69,54 @@ public class Game implements Runnable {
         g.clearRect(0, 0, width, height);
         //clears screen
 
+
+
         //Draw here
 
-        g.drawRect(10, 50 ,50, 70);
-        g.drawImage(Assets.grass, 100, 100, 100, 100, null);
-
+        if(State.getState() != null)
+        State.getState().render(g);
 
         //Stop drawing
 
         bs.show();
         g.dispose();
     }
-
     public void run() {
+
         init();
+
+        int fps = 60;
+        double timePerTick = 1_000_000_000 / fps;
+        //one second (in nanoseconds) / fps
+        double delta = 0;
+        long now;
+        long lastTime = System.nanoTime();
+        long timer = 0;
+        int ticks = 0;
+
+
         while (running) {
-            update();
-            render();
+            now = System.nanoTime();
+            delta += (now - lastTime) / timePerTick;
+            //now - lastTime = how much time has passed since last call this line
+            //time per tick is how many nanoseconds per frame
+            //delta = how many frames (or fraction of a frame) should now be loaded
+            timer += now - lastTime;
+            lastTime = now;
+
+            if (delta >= 1) {
+            //if at least one frame's worth of time has passed, load one frame
+                tick();
+                render();
+                ticks++;
+                delta--;
+            }
+
+            if(timer >= 1_000_000_000) {
+                System.out.println("Ticks and Frames: " + ticks);
+                ticks = 0;
+                timer = 0;
+            }
         }
         stop();
     }
@@ -87,7 +129,6 @@ public class Game implements Runnable {
         thread = new Thread(this);
         thread.start();
     }
-
     public synchronized void stop() {
         if (!running) return;
 
