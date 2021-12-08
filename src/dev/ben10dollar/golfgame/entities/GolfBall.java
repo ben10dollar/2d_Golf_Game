@@ -10,9 +10,17 @@ public class GolfBall extends Ball {
         super(positionX, positionY, mass, radius);
     }
 
+    double velocityX = 5;
+    double velocityY = 10;
+
     @Override
     public void tick() {
 
+        if(positionX > 800-16 || 0 > positionX) velocityX *= -1;
+        if(positionY > 800-16 || 0 > positionY) velocityY *= -1;
+
+        positionX += velocityX;
+        positionY += velocityY;
     }
 
     @Override

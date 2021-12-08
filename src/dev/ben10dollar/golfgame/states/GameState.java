@@ -15,7 +15,7 @@ public class GameState extends State {
 
     @Override
     public void tick() {
-
+        golfBall.tick();
     }
 
     @Override
