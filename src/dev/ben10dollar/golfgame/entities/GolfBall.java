@@ -16,8 +16,8 @@ public class GolfBall extends Ball {
     @Override
     public void tick() {
 
-        if(positionX > 800-16 || 0 > positionX) velocityX *= -1;
-        if(positionY > 800-16 || 0 > positionY) velocityY *= -1;
+        if(positionX > 448-16 || 0 > positionX) velocityX *= -1;
+        if(positionY > 448-16 || 0 > positionY) velocityY *= -1;
 
         positionX += velocityX;
         positionY += velocityY;
@@ -25,6 +25,6 @@ public class GolfBall extends Ball {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.ball, (int)positionX, (int)positionY, null);
+        g.drawImage(Assets.golfBall, (int)positionX, (int)positionY, null);
     }
 }

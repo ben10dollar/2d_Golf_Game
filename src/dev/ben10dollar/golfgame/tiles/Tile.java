@@ -5,11 +5,12 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
 
-    private static final int TILE_WIDTH = 64, TILE_HEIGHT = 64;
+    public static final int TILE_WIDTH = 64, TILE_HEIGHT = 64;
 
     private static Tile[] tiles = new Tile[256];
     private static Tile grassTile = new GrassTile(0);
     private static Tile dirtTile = new DirtTile(1);
+    private static Tile wallTile = new WallTile(4);
 
     protected BufferedImage texture;
     protected int id;

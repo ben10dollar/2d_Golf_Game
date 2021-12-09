@@ -46,9 +46,9 @@ public class Game implements Runnable {
         display = new Display(title, width, height);
         Assets.init();
 
-        gameState = new GameState();
-        menuState = new MenuState();
-        settingsState = new SettingsState();
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
+        settingsState = new SettingsState(this);
         State.setState(gameState);
     }
     private void tick() {
@@ -69,13 +69,9 @@ public class Game implements Runnable {
         g.clearRect(0, 0, width, height);
         //clears screen
 
-
-
-        //Draw here
-
+        //Draw her
         if(State.getState() != null)
         State.getState().render(g);
-
         //Stop drawing
 
         bs.show();
