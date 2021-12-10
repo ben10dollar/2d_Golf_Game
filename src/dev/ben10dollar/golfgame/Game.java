@@ -2,6 +2,7 @@ package dev.ben10dollar.golfgame;
 
 import dev.ben10dollar.golfgame.display.Display;
 import dev.ben10dollar.golfgame.graphics.Assets;
+import dev.ben10dollar.golfgame.graphics.Camera;
 import dev.ben10dollar.golfgame.states.GameState;
 import dev.ben10dollar.golfgame.states.MenuState;
 import dev.ben10dollar.golfgame.states.SettingsState;
@@ -14,8 +15,8 @@ public class Game implements Runnable {
     //main class of the golf game
 
     private Display display;
-    public int width, height;
-    public String title;
+    private int width, height;
+    private String title;
 
     private boolean running = false;
     Thread thread = new Thread();
@@ -28,9 +29,13 @@ public class Game implements Runnable {
     private int numOfBuffers = 3;
     private Graphics g;
 
+    //states
     private State gameState;
     private State menuState;
     private State settingsState;
+
+    //camera
+    private Camera camera;
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -45,6 +50,8 @@ public class Game implements Runnable {
 
         display = new Display(title, width, height);
         Assets.init();
+
+        camera = new Camera(this, 0, 0);
 
         gameState = new GameState(this);
         menuState = new MenuState(this);
@@ -133,4 +140,16 @@ public class Game implements Runnable {
         catch (InterruptedException e) { e.printStackTrace(); }
     }
 
+
+
+    //___Getters and Setters___
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
+    }
+    public Camera getCamera() {
+        return camera;
+    }
 }

@@ -1,5 +1,6 @@
 package dev.ben10dollar.golfgame.holes;
 
+import dev.ben10dollar.golfgame.Game;
 import dev.ben10dollar.golfgame.tiles.Tile;
 import dev.ben10dollar.golfgame.utils.Utils;
 
@@ -7,10 +8,12 @@ import java.awt.*;
 
 public class Hole {
 
+    private Game game;
     private int width, height, spawnX, spawnY;
     private int[][] tiles;
 
-    public Hole(String path) {
+    public Hole(Game game, String path) {
+        this.game = game;
         loadHole(path);
     }
 

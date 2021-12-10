@@ -15,8 +15,8 @@ public class GameState extends State {
 
     public GameState(Game game) {
         super(game);
-        golfBall = new GolfBall(100, 100, 10, 10);
-        hole1 = new Hole("res/holes/Hole_1.txt");
+        golfBall = new GolfBall(game,100, 100, 10, 10);
+        hole1 = new Hole(game,"res/holes/Hole_2.txt");
     }
 
     @Override
