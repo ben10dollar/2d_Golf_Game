@@ -3,7 +3,7 @@ package dev.ben10dollar.golfgame.tiles;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Tile {
+public abstract class Tile {
 
     public static final int TILE_WIDTH = 64, TILE_HEIGHT = 64;
 
@@ -15,8 +15,11 @@ public class Tile {
     protected BufferedImage texture;
     protected int id;
 
-    public Tile(BufferedImage texture, int id) {
+    protected double coefficientOfKineticFriction;
+
+    public Tile(BufferedImage texture, double coefficientOfKineticFriction, int id) {
         this.texture = texture;
+        this.coefficientOfKineticFriction = coefficientOfKineticFriction;
         this.id = id;
 
         tiles[id] = this;
@@ -35,6 +38,10 @@ public class Tile {
 
     public static Tile getTile(int id) {
         return tiles[id];
+    }
+
+    public double getCoefficientOfKineticFriction() {
+        return coefficientOfKineticFriction;
     }
 
 }

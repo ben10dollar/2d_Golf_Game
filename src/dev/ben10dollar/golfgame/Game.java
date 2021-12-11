@@ -14,6 +14,8 @@ import java.awt.image.BufferStrategy;
 public class Game implements Runnable {
     //main class of the golf game
 
+    private static final int TARGET_FPS = 60;
+
     private Display display;
     private int width, height;
     private String title;
@@ -88,8 +90,7 @@ public class Game implements Runnable {
 
         init();
 
-        int fps = 60;
-        double timePerTick = 1_000_000_000 / fps;
+        double timePerTick = 1_000_000_000 / TARGET_FPS;
         //one second (in nanoseconds) / fps
         double delta = 0;
         long now;
@@ -151,5 +152,11 @@ public class Game implements Runnable {
     }
     public Camera getCamera() {
         return camera;
+    }
+    public State getGameState() {
+        return gameState;
+    }
+    public int getTargetFps() {
+        return TARGET_FPS;
     }
 }
