@@ -1,6 +1,7 @@
 package dev.ben10dollar.golfgame.states;
 
 import dev.ben10dollar.golfgame.Game;
+import dev.ben10dollar.golfgame.entities.Ball;
 import dev.ben10dollar.golfgame.entities.GolfBall;
 import dev.ben10dollar.golfgame.graphics.Assets;
 import dev.ben10dollar.golfgame.holes.Hole;
@@ -36,6 +37,9 @@ public class GameState extends State {
 
     public Hole getCurrentHole() {
         return currentHole;
+    }
+    public Ball getGolfBall() {
+        return golfBall;
     }
 
 }

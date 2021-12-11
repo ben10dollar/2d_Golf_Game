@@ -3,6 +3,7 @@ package dev.ben10dollar.golfgame;
 import dev.ben10dollar.golfgame.display.Display;
 import dev.ben10dollar.golfgame.graphics.Assets;
 import dev.ben10dollar.golfgame.graphics.Camera;
+import dev.ben10dollar.golfgame.input.MouseManager;
 import dev.ben10dollar.golfgame.states.GameState;
 import dev.ben10dollar.golfgame.states.MenuState;
 import dev.ben10dollar.golfgame.states.SettingsState;
@@ -32,12 +33,15 @@ public class Game implements Runnable {
     private Graphics g;
 
     //states
-    private State gameState;
+    private GameState gameState;
     private State menuState;
     private State settingsState;
 
     //camera
     private Camera camera;
+
+    //mouse input
+    private MouseManager mouseManager;
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -54,6 +58,7 @@ public class Game implements Runnable {
         Assets.init();
 
         camera = new Camera(this, 0, 0);
+        mouseManager = new MouseManager(this);
 
         gameState = new GameState(this);
         menuState = new MenuState(this);
@@ -153,7 +158,10 @@ public class Game implements Runnable {
     public Camera getCamera() {
         return camera;
     }
-    public State getGameState() {
+    public MouseManager getMouseManager() {
+        return mouseManager;
+    }
+    public GameState getGameState() {
         return gameState;
     }
     public int getTargetFps() {

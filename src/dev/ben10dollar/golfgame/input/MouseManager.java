@@ -1,20 +1,30 @@
 package dev.ben10dollar.golfgame.input;
 
+import dev.ben10dollar.golfgame.Game;
+import dev.ben10dollar.golfgame.states.GameState;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import java.math.*;
+
 public class MouseManager implements MouseListener, MouseMotionListener {
 
+    private Game game;
     private boolean leftPressed, rightPressed;
     private int mouseX, mouseY;
 
-    public MouseManager() {
+    public MouseManager(Game game) {
+        this.game = game;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        double deltaX = mouseX - (int)(game.getGameState().getGolfBall().getPositionX());
+        double deltaY = mouseY - (int)(game.getGameState().getGolfBall().getPositionY());
 
+        game.getGameState().getGolfBall().setAngle(Math.atan(deltaY / deltaX));
     }
 
     @Override
