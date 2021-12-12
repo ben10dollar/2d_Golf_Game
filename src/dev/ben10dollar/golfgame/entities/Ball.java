@@ -18,7 +18,7 @@ public abstract class Ball extends Entity {
     protected double coefficientOfFriction;
     protected double frictionalForce;
 
-    protected double angle = Integer.MAX_VALUE;
+    protected double angle = 0;
     //in radians (from 0 to 2pi)
     protected double velocity = 0;
 
@@ -27,8 +27,11 @@ public abstract class Ball extends Entity {
         super(game, positionX, positionY, mass);
         this.ballSize = ballSize;
         this.ballAsset = ballAsset;
-        this.radius = radius;
+        this.positionX = positionX;
+        this.positionY = positionY;
         this.mass = mass;
+        this.radius = radius;
+
     }
 
     //___PHYSICS___
@@ -37,7 +40,7 @@ public abstract class Ball extends Entity {
         positionY += velocity * Math.cos(angle);
     }
     private void changeVelocity() {
-        coefficientOfFriction = (game.getGameState().getCurrentHole().getTile((int)(positionX / Tile.TILE_WIDTH), (int)(positionY / Tile.TILE_HEIGHT)).getCoefficientOfKineticFriction());
+        coefficientOfFriction = game.getGameState().getCurrentHole().getTile((int)(positionX / Tile.TILE_WIDTH), (int)(positionY / Tile.TILE_HEIGHT)).getCoefficientOfKineticFriction();
         frictionalForce = mass * Physics.GRAVITY * coefficientOfFriction;
         // F_k = F_N * mu_k = m * g * mu_k
 

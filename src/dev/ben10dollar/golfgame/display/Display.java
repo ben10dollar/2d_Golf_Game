@@ -43,6 +43,9 @@ public class Display {
 
 
     //___Getters and Setters___
+    public Frame getFrame() {
+        return frame;
+    }
     public Canvas getCanvas() {
         return canvas;
     }
