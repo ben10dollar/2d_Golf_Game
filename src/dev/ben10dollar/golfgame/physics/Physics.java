@@ -1,4 +1,4 @@
-package dev.ben10dollar.golfgame.entities;
+package dev.ben10dollar.golfgame.physics;
 
 public class Physics {
 

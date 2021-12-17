@@ -21,10 +21,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        double deltaX = mouseX - (int)(game.getGameState().getGolfBall().getPositionX());
-        double deltaY = mouseY - (int)(game.getGameState().getGolfBall().getPositionY());
-
-        game.getGameState().getGolfBall().setAngle(Math.atan(deltaY / deltaX));
+        System.out.println("Coordinates: " + mouseX + ", " + mouseY);
     }
 
     @Override
@@ -37,10 +34,10 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-//        if(e.getButton() == MouseEvent.BUTTON1)
-//            leftPressed = false;
-//        else if(e.getButton() == MouseEvent.BUTTON2)
-//            rightPressed = false;
+        if(e.getButton() == MouseEvent.BUTTON1)
+            leftPressed = false;
+        else if(e.getButton() == MouseEvent.BUTTON2)
+            rightPressed = false;
     }
 
     @Override
@@ -60,8 +57,8 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-         mouseX = e.getX();
-         mouseY = e.getY();
+         mouseX = e.getX() + (int)game.getCamera().getOffsetX();
+         mouseY = e.getY() + (int)game.getCamera().getOffsetX();
     }
 
 

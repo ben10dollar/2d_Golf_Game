@@ -59,7 +59,11 @@ public class Game implements Runnable {
 
         camera = new Camera(this, 0, 0);
         mouseManager = new MouseManager(this);
+
         display.getFrame().addMouseListener(mouseManager);
+        display.getFrame().addMouseMotionListener(mouseManager);
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
 
         gameState = new GameState(this);
         menuState = new MenuState(this);
@@ -84,7 +88,7 @@ public class Game implements Runnable {
         g.clearRect(0, 0, width, height);
         //clears screen
 
-        //Draw her
+        //Draw here
         if(State.getState() != null)
         State.getState().render(g);
         //Stop drawing
@@ -123,7 +127,7 @@ public class Game implements Runnable {
             }
 
             if(timer >= 1_000_000_000) {
-                System.out.println("Ticks and Frames: " + ticks);
+                // System.out.println("Ticks and Frames: " + ticks);
                 ticks = 0;
                 timer = 0;
             }
@@ -134,8 +138,8 @@ public class Game implements Runnable {
         //synchronized for when we're working with a thread, so nothing gets messed up
 
         if (running) return;
-
         running = true;
+
         thread = new Thread(this);
         thread.start();
     }

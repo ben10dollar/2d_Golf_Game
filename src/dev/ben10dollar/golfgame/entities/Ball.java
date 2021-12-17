@@ -1,8 +1,7 @@
 package dev.ben10dollar.golfgame.entities;
 
 import dev.ben10dollar.golfgame.Game;
-import dev.ben10dollar.golfgame.graphics.Assets;
-import dev.ben10dollar.golfgame.states.GameState;
+import dev.ben10dollar.golfgame.physics.Physics;
 import dev.ben10dollar.golfgame.tiles.Tile;
 
 import java.awt.*;
@@ -21,6 +20,8 @@ public abstract class Ball extends Entity {
     protected double angle = 0;
     //in radians (from 0 to 2pi)
     protected double velocity = 0;
+    double deltaX;
+    double deltaY;
 
 
     public Ball(Game game, int ballSize, BufferedImage ballAsset, double positionX, double positionY, double mass, double radius) {
@@ -40,21 +41,33 @@ public abstract class Ball extends Entity {
         positionY += velocity * Math.cos(angle);
     }
     private void changeVelocity() {
+        if(game.getGameState().getCurrentHole().getTile((int)(positionX / Tile.TILE_WIDTH), (int)(positionY / Tile.TILE_HEIGHT)).getId() == 4){
+            angle = calculateAngle(deltaX*-1, deltaY);
+        }
+
         coefficientOfFriction = game.getGameState().getCurrentHole().getTile((int)(positionX / Tile.TILE_WIDTH), (int)(positionY / Tile.TILE_HEIGHT)).getCoefficientOfKineticFriction();
         frictionalForce = mass * Physics.GRAVITY * coefficientOfFriction;
         // F_k = F_N * mu_k = m * g * mu_k
 
-        velocity -= frictionalForce * (1 / game.getTargetFps());
+        velocity -= frictionalForce / mass * (1.0 / (double)game.getTargetFps());
     }
 
     @Override
     public void tick() {
-        if(game.getMouseManager().isLeftPressed()) velocity = 10;
+        if(game.getMouseManager().isLeftPressed()) {
+            deltaX = game.getMouseManager().getMouseX() - (int)(game.getGameState().getGolfBall().getPositionX());
+            deltaY = game.getMouseManager().getMouseY() - (int)(game.getGameState().getGolfBall().getPositionY());
+
+            angle = calculateAngle(deltaX, deltaY);
+            velocity = 10;
+        }
 
         if(velocity != 0) {
             changeVelocity();
             changePosition();
         }
+
+        System.out.println(velocity);
     }
 
     @Override
@@ -63,8 +76,22 @@ public abstract class Ball extends Entity {
         game.getCamera().centerOnEntity(this);
     }
 
+    private double calculateAngle(double deltaX, double deltaY) {
+        double angle = Math.atan(deltaY / deltaX);
+        if(game.getMouseManager().getMouseY() <= (int)(game.getGameState().getGolfBall().getPositionY())) {
+            //Quarter 4
+            if(game.getMouseManager().getMouseX() >= (int)(game.getGameState().getGolfBall().getPositionX()))
+                angle += 2*Math.PI;
+                //Quarter 3
+            else angle += Math.PI;
 
-    public void setAngle(double angle) {
-        this.angle = angle;
+        }
+        //Quarter 2
+        else if(game.getMouseManager().getMouseX() < (int)(game.getGameState().getGolfBall().getPositionX()))
+            angle += Math.PI;
+
+        System.out.println(angle * 360 / (2*Math.PI));
+        return angle;
     }
+
 }

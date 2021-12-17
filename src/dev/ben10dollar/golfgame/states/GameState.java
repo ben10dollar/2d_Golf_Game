@@ -28,11 +28,8 @@ public class GameState extends State {
 
     @Override
     public void render(Graphics g) {
-//        g.drawRect(10, 50 ,50, 70);
-//        g.drawImage(Assets.grass, 100, 100, 100, 100, null);
         currentHole.render(g);
         golfBall.render(g);
-//        Tile.getTile(0).render(g, 100, 100);
     }
 
     public Hole getCurrentHole() {

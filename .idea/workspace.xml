@@ -66,6 +66,9 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\nsten\OneDrive\Desktop\2d_Golf_Game" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.ben10dollar.golfgame.physics" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Run" type="Application" factoryName="Application">
