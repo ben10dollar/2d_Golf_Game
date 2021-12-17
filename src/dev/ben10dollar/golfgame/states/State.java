@@ -1,16 +1,17 @@
 package dev.ben10dollar.golfgame.states;
 
 import dev.ben10dollar.golfgame.Game;
+import dev.ben10dollar.golfgame.utils.Handler;
 
 import java.awt.*;
 
 public abstract class State {
 
     private static State currentState = null;
-    protected Game game;
+    protected Handler handler;
 
-    public State(Game game) {
-        this.game = game;
+    public State(Handler handler) {
+        this.handler = handler;
     }
 
     public static void setState(State state) {

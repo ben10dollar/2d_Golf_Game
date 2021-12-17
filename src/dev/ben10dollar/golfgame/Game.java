@@ -8,6 +8,7 @@ import dev.ben10dollar.golfgame.states.GameState;
 import dev.ben10dollar.golfgame.states.MenuState;
 import dev.ben10dollar.golfgame.states.SettingsState;
 import dev.ben10dollar.golfgame.states.State;
+import dev.ben10dollar.golfgame.utils.Handler;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -43,6 +44,9 @@ public class Game implements Runnable {
     //mouse input
     private MouseManager mouseManager;
 
+    //handler
+    private Handler handler;
+
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -59,15 +63,16 @@ public class Game implements Runnable {
 
         camera = new Camera(this, 0, 0);
         mouseManager = new MouseManager(this);
+        handler = new Handler(this);
 
         display.getFrame().addMouseListener(mouseManager);
         display.getFrame().addMouseMotionListener(mouseManager);
         display.getCanvas().addMouseListener(mouseManager);
         display.getCanvas().addMouseMotionListener(mouseManager);
 
-        gameState = new GameState(this);
-        menuState = new MenuState(this);
-        settingsState = new SettingsState(this);
+        gameState = new GameState(handler);
+        menuState = new MenuState(handler);
+        settingsState = new SettingsState(handler);
         State.setState(gameState);
     }
     private void tick() {

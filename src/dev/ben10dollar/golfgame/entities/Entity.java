@@ -1,20 +1,23 @@
 package dev.ben10dollar.golfgame.entities;
 
 import dev.ben10dollar.golfgame.Game;
+import dev.ben10dollar.golfgame.utils.Handler;
 
 import java.awt.*;
 
 public abstract class Entity {
 
-    protected Game game;
+    protected Handler handler;
     protected double positionX, positionY;
     protected double mass;
+    protected Rectangle bounds;
 
-    public Entity(Game game, double positionX, double positionY, double mass) {
-        this.game = game;
+    public Entity(Handler handler, double positionX, double positionY, double mass) {
+        this.handler = handler;
         this.positionX = positionX;
         this.positionY = positionY;
         this.mass = mass;
+        bounds = new Rectangle();
     }
 
     public abstract void tick();

@@ -1,19 +1,19 @@
 package dev.ben10dollar.golfgame.holes;
 
-import dev.ben10dollar.golfgame.Game;
 import dev.ben10dollar.golfgame.tiles.Tile;
+import dev.ben10dollar.golfgame.utils.Handler;
 import dev.ben10dollar.golfgame.utils.Utils;
 
 import java.awt.*;
 
 public class Hole {
 
-    private Game game;
+    private Handler handler;
     private int width, height, spawnX, spawnY;
     private int[][] tiles;
 
-    public Hole(Game game, String path) {
-        this.game = game;
+    public Hole(Handler handler, String path) {
+        this.handler = handler;
         loadHole(path);
     }
 
@@ -23,7 +23,7 @@ public class Hole {
     public void render(Graphics g) {
         for(int y=0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                getTile(x, y).render(g, x * Tile.TILE_WIDTH - (int)game.getCamera().getOffsetX(), y * Tile.TILE_HEIGHT - (int)game.getCamera().getOffsetY());
+                getTile(x, y).render(g, x * Tile.TILE_WIDTH - (int)handler.getCamera().getOffsetX(), y * Tile.TILE_HEIGHT - (int)handler.getCamera().getOffsetY());
             }
         }
     }
