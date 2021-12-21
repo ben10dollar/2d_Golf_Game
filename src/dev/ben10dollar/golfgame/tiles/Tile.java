@@ -10,6 +10,8 @@ public abstract class Tile {
     private static Tile[] tiles = new Tile[256];
     private static Tile grassTile = new GrassTile(0);
     private static Tile dirtTile = new DirtTile(1);
+    private static Tile sandTile = new SandTile(2);
+    private static Tile holeTile = new HoleTile(3);
     private static Tile wallTile = new WallTile(4);
 
     protected BufferedImage texture;
@@ -33,6 +35,10 @@ public abstract class Tile {
 
     public boolean isSolid() {
         if(id == 4) return true;
+        return false;
+    }
+    public boolean isHole() {
+        if(id == 3) return true;
         return false;
     }
 

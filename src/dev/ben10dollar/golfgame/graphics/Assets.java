@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static final int width = 4, height = 4;
-    public static BufferedImage grass, dirt, water, sand, wall, golfBall;
+    public static BufferedImage grass, dirt, water, sand, wall, golfBall, hole;
 
     public static void init() {
         SpriteSheet spriteSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Sprite_Sheet.png"));
@@ -16,6 +16,7 @@ public class Assets {
         sand = spriteSheet.crop(width * 3, 0, width, height);
         wall = spriteSheet.crop(0, height, width, height);
         golfBall = spriteSheet.crop(width, height, width * 2, height * 2);
+        hole = spriteSheet.crop(width * 3, height, width, height);
     }
 
 }
