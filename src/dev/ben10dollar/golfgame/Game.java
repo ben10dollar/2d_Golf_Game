@@ -16,8 +16,11 @@ import java.awt.image.BufferStrategy;
 public class Game implements Runnable {
     //main class of the golf game
 
-    private static final int TARGET_FPS = 60;
+    public static final int TARGET_FPS = 60;
+    public static final int SCALE = 1;
 
+
+    //display
     private Display display;
     private int width, height;
     private String title;
@@ -28,6 +31,7 @@ public class Game implements Runnable {
     //game thread runs on it's own mini-program, to keep it separate
     //utility: allows us to run a class separately from the rest of the program
 
+    //graphics
     private BufferStrategy bs;
     //"hidden" computer screen within computer (actual just data of a screen)
     private int numOfBuffers = 3;
@@ -157,7 +161,6 @@ public class Game implements Runnable {
     }
 
 
-
     //___Getters and Setters___
     public int getWidth() {
         return width;
@@ -173,8 +176,5 @@ public class Game implements Runnable {
     }
     public GameState getGameState() {
         return gameState;
-    }
-    public int getTargetFps() {
-        return TARGET_FPS;
     }
 }

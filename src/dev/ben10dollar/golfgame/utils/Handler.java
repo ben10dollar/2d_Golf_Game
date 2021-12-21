@@ -21,12 +21,8 @@ public class Handler {
     public int getHeight() { return game.getHeight(); }
     public Camera getCamera() { return game.getCamera(); }
     public MouseManager getMouseManager() { return game.getMouseManager(); }
-    public GameState getGameState() { return game.getGameState(); }
-    public int getTargetFPS() { return game.getTargetFps(); }
-
+    public int getTargetFPS() { return game.TARGET_FPS; }
 
     public void setGame(Game game) { this.game = game; }
     public void setHole(Hole hole) { this.hole = hole; }
-
-
 }

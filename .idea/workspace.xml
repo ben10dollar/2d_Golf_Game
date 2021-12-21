@@ -64,6 +64,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nsten\2d_Golf_Game\src\dev\ben10dollar\golfgame\old_code" />
       <recent name="C:\Users\nsten\OneDrive\Desktop\2d_Golf_Game" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -115,10 +116,11 @@
           <properties class="java.io.FileNotFoundException" package="java.io" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/holes/Hole.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="2" />
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/Game.java</url>
+          <line>19</line>
+          <properties field="SCALE" class="dev.ben10dollar.golfgame.Game" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

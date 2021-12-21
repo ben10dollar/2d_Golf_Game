@@ -27,21 +27,22 @@ public abstract class Tile {
 
     public void tick() {
     }
-
     public void render(Graphics g, int x, int y) {
         g.drawImage(texture, x, y, TILE_WIDTH, TILE_HEIGHT, null);
+    }
+
+    public boolean isSolid() {
+        if(id == 4) return true;
+        return false;
     }
 
     public int getId() {
         return id;
     }
-
     public static Tile getTile(int id) {
         return tiles[id];
     }
-
     public double getCoefficientOfKineticFriction() {
         return coefficientOfKineticFriction;
     }
-
 }

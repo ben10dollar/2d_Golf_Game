@@ -67,7 +67,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     public boolean isLeftPressed() {
         return leftPressed;
     }
-    public boolean isRightPressedPressed() {
+    public boolean isRightPressed() {
         return rightPressed;
     }
     public int getMouseX() {
@@ -76,4 +76,5 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     public int getMouseY() {
         return mouseY;
     }
+
 }
