@@ -22,6 +22,7 @@ public abstract class Ball extends Entity {
     public void tick() {
         changePosition();
         changeVelocity();
+        System.out.println("VelocityX: " + velocityX);
         handler.getCamera().centerOnEntity(this);
     }
     @Override
@@ -91,10 +92,16 @@ public abstract class Ball extends Entity {
         changeVelocityY();
     }
     private void changeVelocityX() {
-        velocityX -= Physics.kineticFriction(deltaX(), deltaY(), handler.getHole().getTile((int)x, (int)y).getCoefficientOfKineticFriction(), mass)[0] / mass * (1 / (double)handler.getTargetFPS());
+        if(velocityX == 0) return; //friction doesn't act on stationary objects
+        double deltaVelocityX = Physics.kineticFriction(deltaX(), deltaY(), handler.getHole().getTile((int)x, (int)y).getCoefficientOfKineticFriction(), mass)[0] / mass * (1 / (double)handler.getTargetFPS());
+        if((velocityX + deltaVelocityX) / velocityX < 0) velocityX = 0; //check if velocity is about to change signs. If it is, set velocity to 0 instead
+        else velocityX += deltaVelocityX;
     }
     private void changeVelocityY() {
-        velocityY -= Physics.kineticFriction(deltaX(), deltaY(), handler.getHole().getTile((int)x, (int)y).getCoefficientOfKineticFriction(), mass)[1] / mass * (1 / (double)handler.getTargetFPS());
+        if(velocityY == 0) return; //friction doesn't act on stationary objects
+        double deltaVelocityY = Physics.kineticFriction(deltaX(), deltaY(), handler.getHole().getTile((int)x, (int)y).getCoefficientOfKineticFriction(), mass)[1] / mass * (1 / (double)handler.getTargetFPS());
+        if((velocityY + deltaVelocityY) / velocityY < 0) velocityY = 0; //check if velocity is about to change signs. If it is, set velocity to 0 instead
+        else velocityY += deltaVelocityY;
     }
 
 

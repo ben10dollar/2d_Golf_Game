@@ -9,8 +9,8 @@ public class Physics {
         double angle = angle(deltaX, deltaY, deltaX > 0);
 
         double[] componentForces = new double[2];
-        componentForces[0] = kineticFriction * Math.cos(angle);
-        componentForces[1] = kineticFriction * Math.sin(angle);
+        componentForces[0] = -1 * kineticFriction * Math.cos(angle);
+        componentForces[1] = -1 * kineticFriction * Math.sin(angle);
 
         return componentForces;
     }
