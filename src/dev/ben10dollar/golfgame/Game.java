@@ -81,7 +81,6 @@ public class Game implements Runnable {
     }
     private void tick() {
         //updates every variable for the current game state
-
         if(State.getState() != null)
             State.getState().tick();
     }

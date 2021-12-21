@@ -8,11 +8,7 @@ public class Physics {
         double kineticFriction =  coefficientKineticFriction * mass * GRAVITY;
         double angle = angle(deltaX, deltaY, deltaX > 0);
 
-        double[] componentForces = new double[2];
-        componentForces[0] = -1 * kineticFriction * Math.cos(angle);
-        componentForces[1] = -1 * kineticFriction * Math.sin(angle);
-
-        return componentForces;
+        return componentForces(-1.0, kineticFriction, angle);
     }
 
     public static double angle(double deltaX, double deltaY, boolean directionRight) {
@@ -24,6 +20,24 @@ public class Physics {
 
         //System.out.println("Angle: " + angle * 360 / (2*Math.PI));
         return angle;
+    }
+
+    public static double[] componentForces(double constant, double force, double angle) {
+        double[] componentForces = new double[2];
+        componentForces[0] = constant * force * Math.cos(angle);
+        componentForces[1] = constant * force * Math.sin(angle);
+
+        return componentForces;
+    }
+
+    public static double[] appliedForce(double ballX, double ballY, double mouseX, double mouseY) {
+        double dx = mouseX - ballX;
+        double dy = mouseY - ballY;
+        double dDistance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+        double appliedForce = 20 * dDistance;
+        double angle = angle(dx, dy, dx > 0);
+
+        return componentForces(1.0, appliedForce, angle);
     }
 
 }
