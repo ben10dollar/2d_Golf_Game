@@ -16,7 +16,7 @@ public class Assets {
         sand = spriteSheet.crop(width * 3, 0, width, height);
         wall = spriteSheet.crop(0, height, width, height);
         golfBall = spriteSheet.crop(width, height, width * 2, height * 2);
-        arrow = ImageLoader.loadImage("/arrow/RedArrow.png");
+        // arrow = ImageLoader.loadImage("/arrow/RedArrow.png");
         hole = spriteSheet.crop(width * 3, height, width, height);
 
     }

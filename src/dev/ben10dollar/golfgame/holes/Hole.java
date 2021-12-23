@@ -46,9 +46,9 @@ public class Hole {
     }
 
     public Tile getTile(int x, int y) {
-        if(x < 0 || x >= width || y < 0 || y >= height) return Tile.getTile(0);
+        if(x < 0 || x >= width || y < 0 || y >= height) return Tile.getTile(1);
         Tile tile = Tile.getTile(tiles[y][x]);
-        if(tile == null) return Tile.getTile(0);
+        if(tile == null) return Tile.getTile(1);
         return tile;
     }
 

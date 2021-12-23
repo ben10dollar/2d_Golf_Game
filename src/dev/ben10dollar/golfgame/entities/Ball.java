@@ -11,8 +11,8 @@ public abstract class Ball extends Entity {
 
     public static final double DEFAULT_SPEED = 100;
 
-    protected double velocityX = DEFAULT_SPEED;
-    protected double velocityY = DEFAULT_SPEED * 0;
+    protected double velocityX = DEFAULT_SPEED * 0;
+    protected double velocityY = DEFAULT_SPEED * 1;
     protected boolean ballReachedHole;
 
     public Ball(Handler handler, double x, double y, int width, int height, double mass, BufferedImage skin) {
@@ -21,14 +21,17 @@ public abstract class Ball extends Entity {
 
     @Override
     public void tick() {
+        // System.out.println();
+        //System.out.println(handler.getHole().getTile((int) x / Tile.TILE_WIDTH, (int) y / Tile.TILE_HEIGHT));
         changePosition();
         changeVelocity();
-        System.out.println("VelocityX: " + velocityX);
+        System.out.println("VelocityY: " + velocityY);
+        //System.out.println("Velocity: " + Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
         handler.getCamera().centerOnEntity(this);
     }
     @Override
     public void render(Graphics g) {
-        if(!ballReachedHole) g.drawImage(skin, (int)(x - handler.getCamera().getOffsetX()), (int)(y - handler.getCamera().getOffsetY()), width, height, null);
+        g.drawImage(skin, (int)(x - handler.getCamera().getOffsetX()), (int)(y - handler.getCamera().getOffsetY()), width, height, null);
 
         //draw ball target
 //        g.setColor(Color.red);
@@ -41,7 +44,7 @@ public abstract class Ball extends Entity {
 
     //___POSITION___
     private void changePosition(){
-        if(handler.getHole().getTile((int)x, (int)y).isHole()) ballReachedHole = true;
+        if(landedInHole((int)x / Tile.TILE_WIDTH, (int)y / Tile.TILE_HEIGHT)) ballReachedHole = true;
         else {
             changePositionX();
             changePositionY();
@@ -49,9 +52,11 @@ public abstract class Ball extends Entity {
     }
     private void changePositionX(){
 
+        //keyboard input
         if(handler.getKeyManager().right) velocityX += 5;
         if(handler.getKeyManager().left) velocityX -= 5;
 
+        //collision detection
         if(deltaX() > 0){//Moving right
             int nextX = (int) (x + deltaX() + bounds.x + bounds.width) / Tile.TILE_WIDTH;
 
@@ -73,9 +78,11 @@ public abstract class Ball extends Entity {
     }
     private void changePositionY(){
 
+        //keyboard input
         if(handler.getKeyManager().down) velocityY += 5;
         if(handler.getKeyManager().up) velocityY -= 5;
 
+        //collision detection
         if(deltaY() < 0){//Up
             int nextY = (int) (y + deltaY() + bounds.y) / Tile.TILE_HEIGHT;
 
@@ -105,20 +112,23 @@ public abstract class Ball extends Entity {
     }
     private void changeVelocityX() {
         if(velocityX == 0) return; //friction doesn't act on stationary objects
-        double deltaVelocityX = Physics.kineticFriction(deltaX(), deltaY(), handler.getHole().getTile((int)x, (int)y).getCoefficientOfKineticFriction(), mass)[0] / mass * (1 / (double)handler.getTargetFPS());
+        double deltaVelocityX = Physics.kineticFriction(deltaX(), deltaY(), handler.getHole().getTile((int)x / Tile.TILE_WIDTH, (int)y / Tile.TILE_HEIGHT).getCoefficientOfKineticFriction(), mass)[0] / mass * (1 / (double)handler.getTargetFPS());
         if((velocityX + deltaVelocityX) / velocityX < 0) velocityX = 0; //check if velocity is about to change signs. If it is, set velocity to 0 instead
         else velocityX += deltaVelocityX;
     }
     private void changeVelocityY() {
         if(velocityY == 0) return; //friction doesn't act on stationary objects
-        double deltaVelocityY = Physics.kineticFriction(deltaX(), deltaY(), handler.getHole().getTile((int)x, (int)y).getCoefficientOfKineticFriction(), mass)[1] / mass * (1 / (double)handler.getTargetFPS());
+        double deltaVelocityY = Physics.kineticFriction(deltaX(), deltaY(), handler.getHole().getTile(((int)x / Tile.TILE_WIDTH), (int)y / Tile.TILE_HEIGHT).getCoefficientOfKineticFriction(), mass)[1] / mass * (1 / (double)handler.getTargetFPS());
         if((velocityY + deltaVelocityY) / velocityY < 0) velocityY = 0; //check if velocity is about to change signs. If it is, set velocity to 0 instead
         else velocityY += deltaVelocityY;
     }
 
 
-    protected boolean collisionWithTile(int x, int y){
-        return handler.getHole().getTile(x, y).isSolid();
+    protected boolean collisionWithTile(int tileX, int tileY){
+        return handler.getHole().getTile(tileX, tileY).isSolid();
+    }
+    protected boolean landedInHole(int tileX, int tileY) {
+        return handler.getHole().getTile(tileX, tileY).isHole();
     }
     private double deltaX() {
         return velocityX * (1 / (double)handler.getTargetFPS());
@@ -128,12 +138,14 @@ public abstract class Ball extends Entity {
     }
 
 
-
     public double getVelocityX() {
         return velocityX;
     }
     public double getVelocityY() {
         return velocityY;
+    }
+    public boolean getBallReachedHole() {
+        return ballReachedHole;
     }
     public void setVelocityY(double velocityY) {
         this.velocityY = velocityY;

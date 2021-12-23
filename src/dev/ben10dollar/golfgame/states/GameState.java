@@ -22,12 +22,12 @@ public class GameState extends State {
     @Override
     public void tick() {
         currentHole.tick();
-        golfBall.tick();
+        if(!golfBall.getBallReachedHole()) golfBall.tick();
     }
     @Override
     public void render(Graphics g) {
         currentHole.render(g);
-        golfBall.render(g);
+        if(!golfBall.getBallReachedHole()) golfBall.render(g);
     }
 
     public Hole getCurrentHole() {

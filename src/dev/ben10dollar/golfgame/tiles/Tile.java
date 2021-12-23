@@ -33,12 +33,12 @@ public abstract class Tile {
         g.drawImage(texture, x, y, TILE_WIDTH, TILE_HEIGHT, null);
     }
 
-    public boolean isSolid() {
-        if(id == 4) return true;
-        return false;
-    }
     public boolean isHole() {
         if(id == 3) return true;
+        return false;
+    }
+    public boolean isSolid() {
+        if(id == 4) return true;
         return false;
     }
 

@@ -107,6 +107,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -129,27 +130,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/entities/Ball.java</url>
-          <line>51</line>
+          <line>55</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/entities/Ball.java</url>
-          <line>52</line>
+          <line>56</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/entities/Ball.java</url>
-          <line>76</line>
+          <line>82</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/entities/Ball.java</url>
-          <line>75</line>
+          <line>81</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/Game.java</url>
-          <line>93</line>
+          <line>92</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -161,6 +162,16 @@
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/Game.java</url>
           <line>73</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/graphics/Assets.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/entities/Ball.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
