@@ -3,6 +3,7 @@ package dev.ben10dollar.golfgame;
 import dev.ben10dollar.golfgame.display.Display;
 import dev.ben10dollar.golfgame.graphics.Assets;
 import dev.ben10dollar.golfgame.graphics.Camera;
+import dev.ben10dollar.golfgame.input.KeyManager;
 import dev.ben10dollar.golfgame.input.MouseManager;
 import dev.ben10dollar.golfgame.states.GameState;
 import dev.ben10dollar.golfgame.states.MenuState;
@@ -28,7 +29,7 @@ public class Game implements Runnable {
     private boolean running = false;
     Thread thread = new Thread();
     //whole program (2d_Golf_Game) runs on its own program
-    //game thread runs on it's own mini-program, to keep it separate
+    //game thread runs on its own mini-program, to keep it separate
     //utility: allows us to run a class separately from the rest of the program
 
     //graphics
@@ -44,6 +45,9 @@ public class Game implements Runnable {
 
     //camera
     private Camera camera;
+
+    //key input
+    private KeyManager keyManager;
 
     //mouse input
     private MouseManager mouseManager;
@@ -65,9 +69,12 @@ public class Game implements Runnable {
         display = new Display(title, width, height);
         Assets.init();
 
-        camera = new Camera(this, 0, 0);
-        mouseManager = new MouseManager(this);
         handler = new Handler(this);
+        camera = new Camera(this, 0, 0);
+        keyManager = new KeyManager(handler);
+        mouseManager = new MouseManager(handler);
+
+        display.getFrame().addKeyListener(keyManager);
 
         display.getFrame().addMouseListener(mouseManager);
         display.getFrame().addMouseMotionListener(mouseManager);
@@ -83,6 +90,7 @@ public class Game implements Runnable {
         //updates every variable for the current game state
         if(State.getState() != null)
             State.getState().tick();
+        keyManager.tick();
     }
     private void render() {
         //specific method to draw graphics
@@ -169,6 +177,9 @@ public class Game implements Runnable {
     }
     public Camera getCamera() {
         return camera;
+    }
+    public KeyManager getKeyManager() {
+        return keyManager;
     }
     public MouseManager getMouseManager() {
         return mouseManager;

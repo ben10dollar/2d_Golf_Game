@@ -2,6 +2,7 @@ package dev.ben10dollar.golfgame.input;
 
 import dev.ben10dollar.golfgame.Game;
 import dev.ben10dollar.golfgame.states.GameState;
+import dev.ben10dollar.golfgame.utils.Handler;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,12 +12,12 @@ import java.math.*;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
 
-    private Game game;
+    private Handler handler;
     private boolean leftPressed, rightPressed;
     private int mouseX, mouseY;
 
-    public MouseManager(Game game) {
-        this.game = game;
+    public MouseManager(Handler handler) {
+        this.handler = handler;
     }
 
     @Override
@@ -57,8 +58,8 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-         mouseX = e.getX() + (int)game.getCamera().getOffsetX();
-         mouseY = e.getY() + (int)game.getCamera().getOffsetX();
+         mouseX = e.getX() + (int)handler.getCamera().getOffsetX();
+         mouseY = e.getY() + (int)handler.getCamera().getOffsetX();
     }
 
 

@@ -3,6 +3,7 @@ package dev.ben10dollar.golfgame.utils;
 import dev.ben10dollar.golfgame.Game;
 import dev.ben10dollar.golfgame.graphics.Camera;
 import dev.ben10dollar.golfgame.holes.Hole;
+import dev.ben10dollar.golfgame.input.KeyManager;
 import dev.ben10dollar.golfgame.input.MouseManager;
 import dev.ben10dollar.golfgame.states.GameState;
 
@@ -20,6 +21,7 @@ public class Handler {
     public int getWidth() { return game.getWidth(); }
     public int getHeight() { return game.getHeight(); }
     public Camera getCamera() { return game.getCamera(); }
+    public KeyManager getKeyManager() { return game.getKeyManager(); }
     public MouseManager getMouseManager() { return game.getMouseManager(); }
     public int getTargetFPS() { return game.TARGET_FPS; }
 

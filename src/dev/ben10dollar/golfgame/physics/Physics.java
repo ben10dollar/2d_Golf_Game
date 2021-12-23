@@ -1,5 +1,7 @@
 package dev.ben10dollar.golfgame.physics;
 
+import java.awt.event.MouseEvent;
+
 public class Physics {
 
     public static final double GRAVITY = 9.8;
@@ -18,7 +20,6 @@ public class Physics {
         if(!directionRight)
             angle += Math.PI;
 
-        //System.out.println("Angle: " + angle * 360 / (2*Math.PI));
         return angle;
     }
 

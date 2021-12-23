@@ -5,7 +5,7 @@ import dev.ben10dollar.golfgame.graphics.Assets;
 public class HoleTile extends Tile {
 
     public HoleTile(int id) {
-        super(Assets.water, 0, id);
+        super(Assets.hole, 0, id);
     }
 
 }

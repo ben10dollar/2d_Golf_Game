@@ -9,10 +9,11 @@ import java.awt.image.BufferedImage;
 
 public abstract class Ball extends Entity {
 
-    public static final double DEFAULT_SPEED = 10;
+    public static final double DEFAULT_SPEED = 100;
 
-    protected double velocityX = DEFAULT_SPEED * 2;
-    protected double velocityY = DEFAULT_SPEED;
+    protected double velocityX = DEFAULT_SPEED;
+    protected double velocityY = DEFAULT_SPEED * 0;
+    protected boolean ballReachedHole;
 
     public Ball(Handler handler, double x, double y, int width, int height, double mass, BufferedImage skin) {
         super(handler, x, y, width, height, mass, skin);
@@ -27,7 +28,7 @@ public abstract class Ball extends Entity {
     }
     @Override
     public void render(Graphics g) {
-        g.drawImage(skin, (int)(x - handler.getCamera().getOffsetX()), (int)(y - handler.getCamera().getOffsetY()), width, height, null);
+        if(!ballReachedHole) g.drawImage(skin, (int)(x - handler.getCamera().getOffsetX()), (int)(y - handler.getCamera().getOffsetY()), width, height, null);
 
         //draw ball target
 //        g.setColor(Color.red);
@@ -40,10 +41,17 @@ public abstract class Ball extends Entity {
 
     //___POSITION___
     private void changePosition(){
-        changePositionX();
-        changePositionY();
+        if(handler.getHole().getTile((int)x, (int)y).isHole()) ballReachedHole = true;
+        else {
+            changePositionX();
+            changePositionY();
+        }
     }
     private void changePositionX(){
+
+        if(handler.getKeyManager().right) velocityX += 5;
+        if(handler.getKeyManager().left) velocityX -= 5;
+
         if(deltaX() > 0){//Moving right
             int nextX = (int) (x + deltaX() + bounds.x + bounds.width) / Tile.TILE_WIDTH;
 
@@ -64,6 +72,10 @@ public abstract class Ball extends Entity {
         }
     }
     private void changePositionY(){
+
+        if(handler.getKeyManager().down) velocityY += 5;
+        if(handler.getKeyManager().up) velocityY -= 5;
+
         if(deltaY() < 0){//Up
             int nextY = (int) (y + deltaY() + bounds.y) / Tile.TILE_HEIGHT;
 

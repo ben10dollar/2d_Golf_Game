@@ -19,7 +19,6 @@ public class Hole {
 
     public void tick() {
     }
-
     public void render(Graphics g) {
         for(int y=0; y < height; y++) {
             for (int x = 0; x < width; x++) {
