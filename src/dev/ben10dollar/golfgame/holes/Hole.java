@@ -27,6 +27,7 @@ public class Hole {
         }
     }
 
+
     private void loadHole(String path) {
 
         String file = Utils.loadFileAsString(path);
@@ -44,7 +45,6 @@ public class Hole {
         }
 
     }
-
     public Tile getTile(int x, int y) {
         if(x < 0 || x >= width || y < 0 || y >= height) return Tile.getTile(1);
         Tile tile = Tile.getTile(tiles[y][x]);
@@ -52,4 +52,11 @@ public class Hole {
         return tile;
     }
 
+
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
+    }
 }

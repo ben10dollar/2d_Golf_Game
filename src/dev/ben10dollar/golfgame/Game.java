@@ -70,7 +70,7 @@ public class Game implements Runnable {
         Assets.init();
 
         handler = new Handler(this);
-        camera = new Camera(this, 0, 0);
+        camera = new Camera(handler, 0, 0);
         keyManager = new KeyManager(handler);
         mouseManager = new MouseManager(handler);
 

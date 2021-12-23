@@ -12,7 +12,7 @@ public abstract class Ball extends Entity {
     public static final double DEFAULT_SPEED = 100;
 
     protected double velocityX = DEFAULT_SPEED * 0;
-    protected double velocityY = DEFAULT_SPEED * 1;
+    protected double velocityY = DEFAULT_SPEED * 0;
     protected boolean ballReachedHole;
 
     public Ball(Handler handler, double x, double y, int width, int height, double mass, BufferedImage skin) {
@@ -25,8 +25,8 @@ public abstract class Ball extends Entity {
         //System.out.println(handler.getHole().getTile((int) x / Tile.TILE_WIDTH, (int) y / Tile.TILE_HEIGHT));
         changePosition();
         changeVelocity();
-        System.out.println("VelocityY: " + velocityY);
-        //System.out.println("Velocity: " + Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
+        //System.out.println("VelocityY: " + velocityY);
+        System.out.println("Velocity: " + Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
         handler.getCamera().centerOnEntity(this);
     }
     @Override
