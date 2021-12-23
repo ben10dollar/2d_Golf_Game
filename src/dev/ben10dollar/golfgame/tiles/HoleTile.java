@@ -5,8 +5,8 @@ import dev.ben10dollar.golfgame.physics.Physics;
 
 public class HoleTile extends Tile {
 
-    public HoleTile(int id) {
-        super(Assets.hole, Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, id);
+    public HoleTile(double coefficientOfKineticFriction, int id) {
+        super(Assets.hole, coefficientOfKineticFriction, id);
     }
 
 }

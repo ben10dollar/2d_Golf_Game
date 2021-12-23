@@ -7,8 +7,8 @@ public class Physics {
     public static final double GRAVITY = 9.8;
     public static final double COEFFICIENT_OF_KINETIC_FRICTION_BASELINE = .5;
 
-    public static double[] kineticFriction(double deltaX, double deltaY, double coefficientKineticFriction, double mass) {
-        double kineticFriction =  coefficientKineticFriction * mass * GRAVITY;
+    public static double[] kineticFriction(double deltaX, double deltaY, double coefficientOfKineticFriction, double mass) {
+        double kineticFriction =  coefficientOfKineticFriction * mass * GRAVITY;
         double angle = angle(deltaX, deltaY, deltaX < 0);
 
         return componentForces(-1.0, kineticFriction, angle);

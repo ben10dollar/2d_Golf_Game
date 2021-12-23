@@ -1,5 +1,7 @@
 package dev.ben10dollar.golfgame.tiles;
 
+import dev.ben10dollar.golfgame.physics.Physics;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -8,11 +10,11 @@ public abstract class Tile {
     public static final int TILE_WIDTH = 64, TILE_HEIGHT = 64;
 
     private static Tile[] tiles = new Tile[256];
-    private static Tile grassTile = new GrassTile(0);
-    private static Tile dirtTile = new DirtTile(1);
-    private static Tile sandTile = new SandTile(2);
-    private static Tile holeTile = new HoleTile(3);
-    private static Tile wallTile = new WallTile(4);
+    private static Tile grassTile = new GrassTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE, 0);
+    private static Tile dirtTile = new DirtTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 2, 1);
+    private static Tile sandTile = new SandTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 10, 2);
+    private static Tile holeTile = new HoleTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 3);
+    private static Tile wallTile = new WallTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 4);
 
     protected BufferedImage texture;
     protected int id;
