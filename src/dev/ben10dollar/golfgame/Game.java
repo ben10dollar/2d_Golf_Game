@@ -55,6 +55,9 @@ public class Game implements Runnable {
     //handler
     private Handler handler;
 
+    //clock
+    private double clock;
+
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -85,6 +88,8 @@ public class Game implements Runnable {
         menuState = new MenuState(handler);
         settingsState = new SettingsState(handler);
         State.setState(gameState);
+
+        clock = 0;
     }
     private void tick() {
         //updates every variable for the current game state
@@ -146,6 +151,8 @@ public class Game implements Runnable {
                 // System.out.println("Ticks and Frames: " + ticks);
                 ticks = 0;
                 timer = 0;
+                clock++;
+                //System.out.println("Time: " + clock);
             }
         }
         stop();

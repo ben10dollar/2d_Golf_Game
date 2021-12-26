@@ -15,7 +15,7 @@ public class GameState extends State {
     public GameState(Handler handler) {
         super(handler);
         golfBall = new GolfBall(handler,100, 100, 10);
-        currentHole = new Hole(handler,"res/holes/Hole_2.txt");
+        currentHole = new Hole(handler,"res/holes/Hole_1.txt");
         handler.setHole(currentHole);
     }
 

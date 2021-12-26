@@ -21,12 +21,19 @@ public abstract class Ball extends Entity {
 
     @Override
     public void tick() {
-        // System.out.println();
+        //System.out.println();
         //System.out.println(handler.getHole().getTile((int) x / Tile.TILE_WIDTH, (int) y / Tile.TILE_HEIGHT));
+        if(velocityX == 0 && velocityY == 0 && handler.getMouseManager().isLeftPressed()) {
+            //Physics.angle(handler.getMouseManager().getMouseX() - x, handler.getMouseManager().getMouseY() - y, handler.getMouseManager().getMouseX() - x < 0);
+            //one tile = acceleration of 10 m/s^2
+            velocityX = (handler.getMouseManager().getMouseX() - (x - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.ACCELERATION_X_PER_TILE_FROM_BALL;
+            velocityY = (handler.getMouseManager().getMouseY() - (y - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.ACCELERATION_Y_PER_TILE_FROM_BALL;
+            System.out.println(y - handler.getCamera().getOffsetY());
+        }
         changePosition();
         changeVelocity();
         //System.out.println("VelocityY: " + velocityY);
-        System.out.println("Velocity: " + Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
+        //System.out.println("Velocity: " + Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2)));
         handler.getCamera().centerOnEntity(this);
     }
     @Override
