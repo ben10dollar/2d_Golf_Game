@@ -1,0 +1,39 @@
+//        if(deltaX() > 0){//Moving right
+//            int nextX = (int) (x + deltaX() + bounds.x + bounds.width) / Tile.TILE_WIDTH;
+//
+//            if(collisionWithTile(nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
+//                    collisionWithTile(nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
+//                velocityX *= -1;
+//            }
+//            x += deltaX();
+//        }
+//        else if(deltaX() < 0){//Moving left
+//            int nextX = (int) (x + deltaX() + bounds.x) / Tile.TILE_WIDTH;
+//
+//            if(collisionWithTile(nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
+//                    collisionWithTile(nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
+//                velocityX *= -1;
+//            }
+//            x += deltaX();
+//        }
+
+//        if(deltaY() < 0){//Up
+//            int nextY = (int) (y + deltaY() + bounds.y) / Tile.TILE_HEIGHT;
+//
+//            if(collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, nextY) ||
+//                    collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, nextY)) {
+//                velocityY *= -1;
+//            }
+//            y += deltaY();
+//        }
+//        else if(deltaY() > 0){//Down
+//            int nextY = (int) (y + deltaY() + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
+//
+//            if(collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, nextY) ||
+//                    collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, nextY)) {
+//                velocityY *= -1;
+//            }
+//            y += deltaY();
+//        }
+
+

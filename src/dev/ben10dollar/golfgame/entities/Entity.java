@@ -1,6 +1,7 @@
 package dev.ben10dollar.golfgame.entities;
 
 import dev.ben10dollar.golfgame.Game;
+import dev.ben10dollar.golfgame.holes.Hole;
 import dev.ben10dollar.golfgame.utils.Handler;
 import org.w3c.dom.css.Rect;
 
@@ -14,13 +15,14 @@ public abstract class Entity {
     protected Handler handler;
     protected double x, y, mass;
     protected int width, height;
+    protected Hole hole;
     protected Rectangle bounds;
     protected BufferedImage skin;
 
-    public Entity(Handler handler, double x, double y, int width, int height, double mass, BufferedImage skin) {
+    public Entity(Handler handler, Hole hole, int width, int height, double mass, BufferedImage skin) {
         this.handler = handler;
-        this.x = x;
-        this.y = y;
+        x = hole.getSpawnX() - width/2;
+        y = hole.getSpawnY() - height/2;
         this.width = width;
         this.height = height;
         this.mass = mass;

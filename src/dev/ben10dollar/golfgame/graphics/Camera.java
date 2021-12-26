@@ -23,12 +23,12 @@ public class Camera {
     public void centerOnEntity(Entity entity) {
 
         offsetX = (entity.getX() + entity.getBounds().getWidth()/2) - cameraWidth/2;
-        offsetX = Math.max(0, offsetX); //left view barrier
         offsetX = Math.min(handler.getHole().getWidth() * Tile.TILE_WIDTH - cameraWidth, offsetX); //right view barrier
+        offsetX = Math.max(0, offsetX); //left view barrier
 
         offsetY = (entity.getY() + entity.getBounds().getHeight()/2) - cameraHeight/2;
-        offsetY = Math.max(0, offsetY); //top view barrier
         offsetY = Math.min(handler.getHole().getHeight() * Tile.TILE_HEIGHT - cameraHeight, offsetY); //bottom view barrier
+        offsetY = Math.max(0, offsetY); //top view barrier
     }
 
     public void move(double xChange, double yChange) {

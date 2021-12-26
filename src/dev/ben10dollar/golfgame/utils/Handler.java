@@ -10,14 +10,13 @@ import dev.ben10dollar.golfgame.states.GameState;
 public class Handler {
 
     private Game game;
-    private Hole hole;
 
     public Handler(Game game) {
         this.game = game;
     }
 
     public Game getGame() { return game; }
-    public Hole getHole() { return hole; }
+    public Hole getHole() { return game.getGameState().getCurrentHole(); }
     public int getWidth() { return game.getWidth(); }
     public int getHeight() { return game.getHeight(); }
     public Camera getCamera() { return game.getCamera(); }
@@ -26,5 +25,5 @@ public class Handler {
     public int getTargetFPS() { return game.TARGET_FPS; }
 
     public void setGame(Game game) { this.game = game; }
-    public void setHole(Hole hole) { this.hole = hole; }
+//    public void setHole(Hole hole) { game.getGameState().setCurrentHole(hole); }
 }

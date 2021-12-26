@@ -9,8 +9,13 @@ import java.awt.*;
 public class Hole {
 
     private Handler handler;
-    private int width, height, spawnX, spawnY;
+    private int width;
+    private int height;
+
+    private int spawnX;
+    private int spawnY;
     private int[][] tiles;
+    private boolean holeComplete;
 
     public Hole(Handler handler, String path) {
         this.handler = handler;
@@ -34,8 +39,8 @@ public class Hole {
         String[] holeData = file.split("\\s+");
         width = Utils.parseInt(holeData[0]);
         height = Utils.parseInt(holeData[1]);
-        spawnX = Utils.parseInt(holeData[2]);
-        spawnY = Utils.parseInt(holeData[3]);
+        spawnX = Utils.parseInt(holeData[2]) * Tile.TILE_WIDTH + Tile.TILE_WIDTH/2;
+        spawnY = Utils.parseInt(holeData[3]) * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT/2;
 
         tiles = new int[height][width];
         for(int y=0; y < height; y++) {
@@ -58,5 +63,17 @@ public class Hole {
     }
     public int getHeight() {
         return height;
+    }
+    public boolean getHoleComplete() {
+        return holeComplete;
+    }
+    public void setHoleComplete(boolean holeComplete) {
+        this.holeComplete = holeComplete;
+    }
+    public int getSpawnX() {
+        return spawnX;
+    }
+    public int getSpawnY() {
+        return spawnY;
     }
 }

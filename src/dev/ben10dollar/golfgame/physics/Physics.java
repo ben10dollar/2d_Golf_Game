@@ -9,7 +9,7 @@ public class Physics {
     //one tile = 1 meter
 
     public static final double GRAVITY = 9.8;
-    public static final double COEFFICIENT_OF_KINETIC_FRICTION_BASELINE = 3 * 3;
+    public static final double COEFFICIENT_OF_KINETIC_FRICTION_BASELINE = 5;
     public static final double ACCELERATION_X_PER_TILE_FROM_BALL = 1 * Tile.TILE_WIDTH;
     public static final double ACCELERATION_Y_PER_TILE_FROM_BALL = 1 * Tile.TILE_HEIGHT;
 
