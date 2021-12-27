@@ -29,7 +29,7 @@ public abstract class Ball extends Entity {
             //one tile = acceleration of 10 m/s^2
             velocityX = (handler.getMouseManager().getMouseX() - (x + width/2 - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.ACCELERATION_X_PER_TILE_FROM_BALL;
             velocityY = (handler.getMouseManager().getMouseY() - (y + height/2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.ACCELERATION_Y_PER_TILE_FROM_BALL;
-            System.out.println(y - handler.getCamera().getOffsetY());
+//            System.out.println(y - handler.getCamera().getOffsetY());
         }
         changePosition();
         changeVelocity();

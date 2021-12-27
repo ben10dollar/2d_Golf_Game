@@ -1,12 +1,13 @@
-12 10
-1 1
-4 4 4 4 4 4 4 4 4 4 4 4
-4 0 0 0 0 0 0 0 4 0 3 4
-4 0 0 0 0 0 0 0 4 0 0 4
-4 4 4 4 4 4 2 2 4 0 0 4
-4 0 0 0 0 0 0 0 4 0 0 4
-4 0 0 0 0 0 0 0 4 0 0 4
-4 2 2 4 4 4 4 4 4 0 0 4
-4 0 0 0 0 0 0 0 0 0 0 4
-4 0 0 0 0 0 0 0 0 0 0 4
-4 4 4 4 4 4 4 4 4 4 4 4
+11 11
+5 5
+w w w w w w w w w w w
+w g g s s s s g g g w
+w g g g g g g g g g w
+w s s w w w g g g g w
+w g g g g w w s s g w
+w g g g g g w s s h w
+w g g g g w w s s g w
+w s s w w w g g g g w
+w g g g g g g g g g w
+w g g s s s s g g g w
+w w w w w w w w w w w

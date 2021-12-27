@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class SandTile extends Tile {
 
-    public SandTile(double coefficientOfKineticFriction, int id) {
+    public SandTile(double coefficientOfKineticFriction, char id) {
         super(Assets.sand, coefficientOfKineticFriction, id);
     }
 }

@@ -10,18 +10,18 @@ public abstract class Tile {
     public static final int TILE_WIDTH = 64, TILE_HEIGHT = 64;
 
     private static Tile[] tiles = new Tile[256];
-    private static Tile grassTile = new GrassTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE, 0);
-    private static Tile dirtTile = new DirtTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 1.5, 1);
-    private static Tile sandTile = new SandTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 3, 2);
-    private static Tile holeTile = new HoleTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 3);
-    private static Tile wallTile = new WallTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 4);
+    private static Tile grassTile = new GrassTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE, 'g');
+    private static Tile dirtTile = new DirtTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 1.5, 'd');
+    private static Tile sandTile = new SandTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 3, 's');
+    private static Tile holeTile = new HoleTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'h');
+    private static Tile wallTile = new WallTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'w');
 
     protected BufferedImage texture;
-    protected int id;
+    protected char id;
 
     protected double coefficientOfKineticFriction;
 
-    public Tile(BufferedImage texture, double coefficientOfKineticFriction, int id) {
+    public Tile(BufferedImage texture, double coefficientOfKineticFriction, char id) {
         this.texture = texture;
         this.coefficientOfKineticFriction = coefficientOfKineticFriction;
         this.id = id;
@@ -36,18 +36,18 @@ public abstract class Tile {
     }
 
     public boolean isHole() {
-        if(id == 3) return true;
+        if(id == 'h') return true;
         return false;
     }
     public boolean isSolid() {
-        if(id == 4) return true;
+        if(id == 'w') return true;
         return false;
     }
 
     public int getId() {
         return id;
     }
-    public static Tile getTile(int id) {
+    public static Tile getTile(char id) {
         return tiles[id];
     }
     public double getCoefficientOfKineticFriction() {

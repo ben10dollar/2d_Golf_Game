@@ -6,7 +6,7 @@ import dev.ben10dollar.golfgame.physics.Physics;
 
 public class GrassTile extends Tile {
 
-    public GrassTile(double coefficientOfKineticFriction, int id) {
+    public GrassTile(double coefficientOfKineticFriction, char id) {
         super(Assets.grass, coefficientOfKineticFriction, id);
     }
 

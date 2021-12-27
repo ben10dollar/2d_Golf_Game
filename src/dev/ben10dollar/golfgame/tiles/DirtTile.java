@@ -6,7 +6,7 @@ import dev.ben10dollar.golfgame.physics.Physics;
 
 public class DirtTile extends Tile {
 
-    public DirtTile(double coefficientOfKineticFriction, int id) {
+    public DirtTile(double coefficientOfKineticFriction, char id) {
         super(Assets.dirt, coefficientOfKineticFriction, id);
     }
 }

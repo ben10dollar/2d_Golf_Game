@@ -5,7 +5,7 @@ import dev.ben10dollar.golfgame.physics.Physics;
 
 public class WallTile extends Tile{
 
-    public WallTile(double coefficientOfKineticFriction, int id) {
+    public WallTile(double coefficientOfKineticFriction, char id) {
         super(Assets.wall, coefficientOfKineticFriction, id);
     }
 
