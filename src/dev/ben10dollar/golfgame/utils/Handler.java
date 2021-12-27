@@ -1,6 +1,7 @@
 package dev.ben10dollar.golfgame.utils;
 
 import dev.ben10dollar.golfgame.Game;
+import dev.ben10dollar.golfgame.entities.Ball;
 import dev.ben10dollar.golfgame.graphics.Camera;
 import dev.ben10dollar.golfgame.holes.Hole;
 import dev.ben10dollar.golfgame.input.KeyManager;
@@ -17,6 +18,7 @@ public class Handler {
 
     public Game getGame() { return game; }
     public Hole getHole() { return game.getGameState().getCurrentHole(); }
+    public Ball getBall() { return game.getGameState().getBall(); }
     public int getWidth() { return game.getWidth(); }
     public int getHeight() { return game.getHeight(); }
     public Camera getCamera() { return game.getCamera(); }

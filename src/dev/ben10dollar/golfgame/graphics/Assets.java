@@ -4,21 +4,25 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static final int width = 4, height = 4;
-    public static BufferedImage grass, dirt, water, sand, wall, golfBall, arrow, hole;
+    public static final int width = 8, height = 8;
+    public static BufferedImage grass, dirt, water, sand, wall, hole, golfBall, arrow;
 
     public static void init() {
         SpriteSheet spriteSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Sprite_Sheet.png"));
 
+        //row 1
         grass = spriteSheet.crop(0, 0, width, height);
         dirt = spriteSheet.crop(width, 0, width, height);
-        water = spriteSheet.crop(width * 2, 0, width, height);
-        sand = spriteSheet.crop(width * 3, 0, width, height);
-        wall = spriteSheet.crop(0, height, width, height);
-        golfBall = spriteSheet.crop(width, height, width * 2, height * 2);
-        // arrow = ImageLoader.loadImage("/arrow/RedArrow.png");
-        hole = spriteSheet.crop(width * 3, height, width, height);
+        water = spriteSheet.crop(width * 3, 0, width, height);
+        sand = spriteSheet.crop(width * 2, 0, width, height);
+        wall = spriteSheet.crop(width * 4, 0, width, height);
+        hole = spriteSheet.crop(width * 5, 0, width, height);
 
+        //row 2
+        golfBall = spriteSheet.crop(0, height, width, height);
+
+        //row 3
+        arrow = spriteSheet.crop(0, height * 2, width * 2, height);
     }
 
 }

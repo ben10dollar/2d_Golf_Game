@@ -1,11 +1,15 @@
 package dev.ben10dollar.golfgame.entities;
 
+import dev.ben10dollar.golfgame.graphics.Assets;
 import dev.ben10dollar.golfgame.holes.Hole;
 import dev.ben10dollar.golfgame.physics.Physics;
 import dev.ben10dollar.golfgame.tiles.Tile;
 import dev.ben10dollar.golfgame.utils.Handler;
+import dev.ben10dollar.golfgame.utils.Utils;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 public abstract class Ball extends Entity {
@@ -26,10 +30,8 @@ public abstract class Ball extends Entity {
     public void tick() {
 
         if(velocityX == 0 && velocityY == 0 && handler.getMouseManager().isLeftPressed()) {
-            //one tile = acceleration of 10 m/s^2
-            velocityX = (handler.getMouseManager().getMouseX() - (x + width/2 - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.ACCELERATION_X_PER_TILE_FROM_BALL;
-            velocityY = (handler.getMouseManager().getMouseY() - (y + height/2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.ACCELERATION_Y_PER_TILE_FROM_BALL;
-//            System.out.println(y - handler.getCamera().getOffsetY());
+            velocityX = (handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.ACCELERATION_X_PER_TILE_FROM_BALL;
+            velocityY = (handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.ACCELERATION_Y_PER_TILE_FROM_BALL;
         }
         changePosition();
         changeVelocity();
@@ -42,6 +44,18 @@ public abstract class Ball extends Entity {
     public void render(Graphics g) {
         g.drawImage(skin, (int)(x - handler.getCamera().getOffsetX()), (int)(y - handler.getCamera().getOffsetY()), width, height, null);
 
+        if(velocityX == 0 && velocityY == 0 && !handler.getMouseManager().isLeftPressed()) {
+
+            double angle = Physics.angle(handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX()),
+                    handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY()),
+                    handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX()) < 0);
+            double scaleX = Math.abs((handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX()) ) / Tile.TILE_WIDTH * 2);
+            double scaleY = Math.abs((handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * 2);
+            double scale = Math.sqrt(Math.pow(scaleX, 2) + Math.pow(scaleY, 2));
+
+            Utils.drawRotatedImage(angle, (int)(x + width / 2 - handler.getCamera().getOffsetX()), (int)(y + height / 2 - handler.getCamera().getOffsetY()), scale, scale, Assets.arrow, g);
+        }
+
         //draw ball target
 //        g.setColor(Color.red);
 //        g.fillRect((int) (x + bounds.x - handler.getCamera().getOffsetX()),
@@ -51,6 +65,7 @@ public abstract class Ball extends Entity {
 
 
 
+    //one tile = acceleration of 10 m/s^2
     //___POSITION___
     private void changePosition() {
         changePositionX();
