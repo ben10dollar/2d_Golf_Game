@@ -43,7 +43,7 @@ public class Utils {
         AffineTransform transform = new AffineTransform();
         AffineTransform translate = AffineTransform.getTranslateInstance(x, y);
         AffineTransform scale = AffineTransform.getScaleInstance(scaleX, scaleY);
-        AffineTransform rotation = AffineTransform.getRotateInstance(angle);
+        AffineTransform rotation = AffineTransform.getRotateInstance(angle, 0, 4);
 
 
         transform.concatenate(translate);
