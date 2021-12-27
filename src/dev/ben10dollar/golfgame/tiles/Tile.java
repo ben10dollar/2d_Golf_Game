@@ -15,6 +15,7 @@ public abstract class Tile {
     private static Tile sandTile = new SandTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 3, 's');
     private static Tile holeTile = new HoleTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'h');
     private static Tile wallTile = new WallTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'w');
+    private static Tile waterTile = new WaterTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'a');
 
     protected BufferedImage texture;
     protected char id;
@@ -41,6 +42,10 @@ public abstract class Tile {
     }
     public boolean isSolid() {
         if(id == 'w') return true;
+        return false;
+    }
+    public boolean isOutOfBounds() {
+        if(id == 'a') return true;
         return false;
     }
 

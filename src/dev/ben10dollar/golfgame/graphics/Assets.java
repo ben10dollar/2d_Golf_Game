@@ -13,8 +13,8 @@ public class Assets {
         //row 1
         grass = spriteSheet.crop(0, 0, width, height);
         dirt = spriteSheet.crop(width, 0, width, height);
-        water = spriteSheet.crop(width * 3, 0, width, height);
         sand = spriteSheet.crop(width * 2, 0, width, height);
+        water = spriteSheet.crop(width * 3, 0, width, height);
         wall = spriteSheet.crop(width * 4, 0, width, height);
         hole = spriteSheet.crop(width * 5, 0, width, height);
 

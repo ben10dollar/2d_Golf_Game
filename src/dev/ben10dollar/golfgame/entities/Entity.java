@@ -13,7 +13,7 @@ public abstract class Entity {
     public static final double DEFAULT_MASS = 10;
 
     protected Handler handler;
-    protected double x, y, mass;
+    protected double x, y, lastX, lastY, mass;
     protected int width, height;
     protected Hole hole;
     protected Rectangle bounds;
@@ -23,6 +23,8 @@ public abstract class Entity {
         this.handler = handler;
         x = hole.getSpawnX() - width/2;
         y = hole.getSpawnY() - height/2;
+        lastX = x;
+        lastY = y;
         this.width = width;
         this.height = height;
         this.mass = mass;

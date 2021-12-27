@@ -1,13 +1,13 @@
 11 11
 5 5
 w w w w w w w w w w w
-w g g s s s s g g g w
+w g g g a a a g g g w
 w g g g g g g g g g w
-w s s w w w g g g g w
+w s a w w w g g g g w
 w g g g g w w s s g w
 w g g g g g w s s h w
 w g g g g w w s s g w
-w s s w w w g g g g w
+w s a w w w g g g g w
 w g g g g g g g g g w
-w g g s s s s g g g w
+w g g g a a a g g g w
 w w w w w w w w w w w

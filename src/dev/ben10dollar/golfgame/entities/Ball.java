@@ -8,8 +8,6 @@ import dev.ben10dollar.golfgame.utils.Handler;
 import dev.ben10dollar.golfgame.utils.Utils;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 public abstract class Ball extends Entity {
@@ -32,6 +30,9 @@ public abstract class Ball extends Entity {
         if(velocityX == 0 && velocityY == 0 && handler.getMouseManager().isLeftPressed()) {
             velocityX = (handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.ACCELERATION_X_PER_TILE_FROM_BALL;
             velocityY = (handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.ACCELERATION_Y_PER_TILE_FROM_BALL;
+
+            lastX = x;
+            lastY = y;
         }
         changePosition();
         changeVelocity();
@@ -42,10 +43,11 @@ public abstract class Ball extends Entity {
     }
     @Override
     public void render(Graphics g) {
+        //draw ball
         g.drawImage(skin, (int)(x - handler.getCamera().getOffsetX()), (int)(y - handler.getCamera().getOffsetY()), width, height, null);
 
+        //draw arrow
         if(velocityX == 0 && velocityY == 0 && !handler.getMouseManager().isLeftPressed()) {
-
             double angle = Physics.angle(handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX()),
                     handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY()),
                     handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX()) < 0);
@@ -82,16 +84,25 @@ public abstract class Ball extends Entity {
         if(deltaX() > 0) nextX += (deltaX() + bounds.x + bounds.width) / Tile.TILE_WIDTH;
         else if(deltaX() < 0) nextX += (deltaX() + bounds.x) / Tile.TILE_WIDTH;
 
-        if(landedInHole((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
+
+        if(collisionWithWall((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
+                collisionWithWall((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
+            velocityX *= -1;
+            x += deltaX();
+        }
+        else if(landedOutOfBounds((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
+                landedOutOfBounds((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
+            x = lastX;
+            y = lastY;
+            velocityX = 0;
+            velocityY = 0;
+        }
+        else if(landedInHole((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
                 landedInHole((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
             handler.getHole().setHoleComplete(true);
             return;
         }
-        if(collisionWithTile((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
-                collisionWithTile((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
-                velocityX *= -1;
-        }
-        x += deltaX();
+        else x += deltaX();
     }
     private void changePositionY() {
 
@@ -104,16 +115,24 @@ public abstract class Ball extends Entity {
         if(deltaY() > 0) nextY += (deltaY() + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
         else if(deltaY() < 0) nextY += (deltaY() + bounds.y) / Tile.TILE_HEIGHT;
 
-        if(landedInHole((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
+        if(collisionWithWall((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
+                collisionWithWall((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
+            velocityY *= -1;
+            y += deltaY();
+        }
+        else if(landedOutOfBounds((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
+                landedOutOfBounds((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
+            x = lastX;
+            y = lastY;
+            velocityX = 0;
+            velocityY = 0;
+        }
+        else if(landedInHole((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
                 landedInHole((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
             handler.getHole().setHoleComplete(true);
             return;
         }
-        if(collisionWithTile((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
-                collisionWithTile((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
-            velocityY *= -1;
-        }
-        y += deltaY();
+        else y += deltaY();
     }
 
 
@@ -139,9 +158,14 @@ public abstract class Ball extends Entity {
 
 
     //___HELPER METHODS___
-    protected boolean collisionWithTile(int tileX, int tileY) { return handler.getHole().getTile(tileX, tileY).isSolid(); }
+    protected boolean collisionWithWall(int tileX, int tileY) {
+        return handler.getHole().getTile(tileX, tileY).isSolid();
+    }
     protected boolean landedInHole(int tileX, int tileY) {
         return handler.getHole().getTile(tileX, tileY).isHole();
+    }
+    protected boolean landedOutOfBounds(int tileX, int tileY) {
+        return handler.getHole().getTile(tileX, tileY).isOutOfBounds();
     }
     private double deltaX() {
         return velocityX * (1 / (double)handler.getTargetFPS());
