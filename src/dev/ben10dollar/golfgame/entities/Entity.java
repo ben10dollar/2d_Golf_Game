@@ -30,6 +30,7 @@ public abstract class Entity {
         this.mass = mass;
         this.skin = skin;
 
+//        bounds = new Rectangle( (int).25 * width, (int).25 * height, (int).75 * width, (int).75 * height);
         bounds = new Rectangle(0, 0, width, height);
     }
 

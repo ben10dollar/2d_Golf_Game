@@ -1,7 +1,10 @@
-5 5
+8 8
 1 1
-w w w w w
-w g g g w
-w g g g w
-w g g h w
-w w w w w
+w w w w w w w w
+w i i i i i i w
+w i s l l s i w
+w i s i i s i w
+w i s i i s i w
+w i s l l s i w
+w i s i i i h w
+w w w w w w w w

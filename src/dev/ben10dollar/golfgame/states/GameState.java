@@ -1,5 +1,6 @@
 package dev.ben10dollar.golfgame.states;
 
+import dev.ben10dollar.golfgame.entities.BowlingBall;
 import dev.ben10dollar.golfgame.entities.GolfBall;
 import dev.ben10dollar.golfgame.entities.Ball;
 import dev.ben10dollar.golfgame.holes.Hole;
@@ -20,11 +21,13 @@ public class GameState extends State {
         super(handler);
 
         holesInCourse = new LinkedList<Hole>();
-        addHoleToCourse(new Hole(handler,"res/holes/Hole_2.txt"));
-        addHoleToCourse(new Hole(handler,"res/holes/golf2.txt"));
+        //addHoleToCourse(new Hole(handler,"res/holes/golf2.txt"));
+        //addHoleToCourse(new Hole(handler,"res/holes/Hole_2.txt"));
+        addHoleToCourse(new Hole(handler,"res/holes/Hole_1.txt"));
 
         currentHole = holesInCourse.remove();
         ball = new GolfBall(handler, currentHole,10);
+        //ball = new BowlingBall(handler, currentHole,40);
     }
 
     @Override
@@ -33,7 +36,8 @@ public class GameState extends State {
         if(!currentHole.getHoleComplete()) ball.tick();
         else if(holesInCourse.size() != 0) {
             currentHole = holesInCourse.remove();
-            ball = new GolfBall(handler, currentHole, 10);
+            ball = new GolfBall(handler, currentHole,10);
+            //ball = new BowlingBall(handler, currentHole, 40);
         }
         else courseDone = true;
     }

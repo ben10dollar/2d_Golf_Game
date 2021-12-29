@@ -28,8 +28,8 @@ public abstract class Ball extends Entity {
     public void tick() {
 
         if(velocityX == 0 && velocityY == 0 && handler.getMouseManager().isLeftPressed()) {
-            velocityX = (handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.ACCELERATION_X_PER_TILE_FROM_BALL;
-            velocityY = (handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.ACCELERATION_Y_PER_TILE_FROM_BALL;
+            velocityX = (handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.FORCE_X_PER_TILE_FROM_BALL / mass;
+            velocityY = (handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.FORCE_Y_PER_TILE_FROM_BALL / mass;
 
             lastX = x;
             lastY = y;
@@ -88,6 +88,7 @@ public abstract class Ball extends Entity {
         if(collisionWithWall((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
                 collisionWithWall((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
             velocityX *= -1;
+            velocityX *= 2.0/3.0;
             x += deltaX();
         }
         else if(landedOutOfBounds((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
@@ -118,6 +119,7 @@ public abstract class Ball extends Entity {
         if(collisionWithWall((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
                 collisionWithWall((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
             velocityY *= -1;
+            velocityY *= 2.0/3.0;
             y += deltaY();
         }
         else if(landedOutOfBounds((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||

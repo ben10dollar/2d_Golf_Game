@@ -16,6 +16,8 @@ public abstract class Tile {
     private static Tile holeTile = new HoleTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'h');
     private static Tile wallTile = new WallTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'w');
     private static Tile waterTile = new WaterTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'a');
+    private static Tile lavaTile = new LavaTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'l');
+    private static Tile iceTile = new IceTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * .5, 'i');
 
     protected BufferedImage texture;
     protected char id;
@@ -45,7 +47,7 @@ public abstract class Tile {
         return false;
     }
     public boolean isOutOfBounds() {
-        if(id == 'a') return true;
+        if(id == 'a' || id == 'l') return true;
         return false;
     }
 
