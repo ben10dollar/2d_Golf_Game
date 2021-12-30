@@ -31,7 +31,7 @@ public abstract class Entity {
         this.skin = skin;
 
 //        bounds = new Rectangle( (int).25 * width, (int).25 * height, (int).75 * width, (int).75 * height);
-        bounds = new Rectangle(0, 0, width, height);
+        bounds = new Rectangle(width/8, height/8, width - width/8, height - height/8);
     }
 
     public abstract void tick();

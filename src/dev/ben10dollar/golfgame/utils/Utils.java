@@ -1,7 +1,6 @@
 package dev.ben10dollar.golfgame.utils;
 
 import dev.ben10dollar.golfgame.graphics.Assets;
-import dev.ben10dollar.golfgame.physics.Physics;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -38,17 +37,16 @@ public class Utils {
             return 0;
         }
     }
-    public static void drawRotatedImage(double angle, int x, int y, double scaleX, double scaleY, BufferedImage image, Graphics g) {
+    public static void drawRotatedImage(double angle, int x, int y, int anchorX, int anchorY, double scaleX, double scaleY, BufferedImage image, Graphics g) {
 
         AffineTransform transform = new AffineTransform();
-        AffineTransform translate = AffineTransform.getTranslateInstance(x, y);
-        AffineTransform scale = AffineTransform.getScaleInstance(scaleX, scaleY);
-        AffineTransform rotation = AffineTransform.getRotateInstance(angle, 0, 4);
 
-
-        transform.concatenate(translate);
-        transform.concatenate(scale);
-        transform.concatenate(rotation);
+        //transformations are reverse order
+        transform.translate(x, y);  //4: translate anchor pts to intended coordinates
+        transform.rotate(angle);  //3: rotate
+        transform.translate(-scaleX/2, -scaleY/2);  //2.5: shift middle point (now translated due to scale) back to center
+        transform.scale(scaleX, scaleY);  //2: scale
+        transform.translate(-anchorX, -anchorY);  //1 :translate anchor pts to origin
 
         Graphics2D g2d = (Graphics2D)g;
         g2d.drawImage(image, transform, null);

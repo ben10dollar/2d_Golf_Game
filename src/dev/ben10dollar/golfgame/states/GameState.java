@@ -21,9 +21,10 @@ public class GameState extends State {
         super(handler);
 
         holesInCourse = new LinkedList<Hole>();
-        //addHoleToCourse(new Hole(handler,"res/holes/golf2.txt"));
+        //addHoleToCourse(new Hole(handler,"res/holes/Hole_1.txt"));
         //addHoleToCourse(new Hole(handler,"res/holes/Hole_2.txt"));
-        addHoleToCourse(new Hole(handler,"res/holes/Hole_1.txt"));
+        addHoleToCourse(new Hole(handler,"res/holes/Hole_3.txt"));
+        //addHoleToCourse(new Hole(handler,"res/holes/Hole_4.txt"));
 
         currentHole = holesInCourse.remove();
         ball = new GolfBall(handler, currentHole,10);

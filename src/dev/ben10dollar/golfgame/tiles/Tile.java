@@ -1,6 +1,6 @@
 package dev.ben10dollar.golfgame.tiles;
 
-import dev.ben10dollar.golfgame.physics.Physics;
+import dev.ben10dollar.golfgame.utils.Physics;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,6 +18,7 @@ public abstract class Tile {
     private static Tile waterTile = new WaterTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'a');
     private static Tile lavaTile = new LavaTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'l');
     private static Tile iceTile = new IceTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * .5, 'i');
+    private static Tile bouncePadTile = new bouncePadTile(Physics.COEFFICIENT_OF_KINETIC_FRICTION_BASELINE * 0, 'b');
 
     protected BufferedImage texture;
     protected char id;
@@ -42,8 +43,12 @@ public abstract class Tile {
         if(id == 'h') return true;
         return false;
     }
-    public boolean isSolid() {
+    public boolean isWall() {
         if(id == 'w') return true;
+        return false;
+    }
+    public boolean isBouncePad() {
+        if(id == 'b') return true;
         return false;
     }
     public boolean isOutOfBounds() {

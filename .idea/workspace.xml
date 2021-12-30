@@ -74,6 +74,7 @@
       <recent name="C:\Users\nsten\OneDrive\Desktop\2d_Golf_Game" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.ben10dollar.golfgame.utils" />
       <recent name="dev.ben10dollar.golfgame.physics" />
     </key>
   </component>
@@ -145,7 +146,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/graphics/Assets.java</url>
-          <line>27</line>
+          <line>28</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -154,29 +155,19 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/utils/Utils.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/utils/Utils.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/utils/Utils.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/entities/Ball.java</url>
           <line>90</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/entities/Ball.java</url>
-          <line>121</line>
+          <line>127</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/entities/Ball.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

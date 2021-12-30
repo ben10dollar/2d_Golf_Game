@@ -1,4 +1,4 @@
-package dev.ben10dollar.golfgame.physics;
+package dev.ben10dollar.golfgame.utils;
 
 import dev.ben10dollar.golfgame.tiles.Tile;
 

@@ -2,7 +2,7 @@ package dev.ben10dollar.golfgame.entities;
 
 import dev.ben10dollar.golfgame.graphics.Assets;
 import dev.ben10dollar.golfgame.holes.Hole;
-import dev.ben10dollar.golfgame.physics.Physics;
+import dev.ben10dollar.golfgame.utils.Physics;
 import dev.ben10dollar.golfgame.tiles.Tile;
 import dev.ben10dollar.golfgame.utils.Handler;
 import dev.ben10dollar.golfgame.utils.Utils;
@@ -55,7 +55,7 @@ public abstract class Ball extends Entity {
             double scaleY = Math.abs((handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * 2);
             double scale = Math.sqrt(Math.pow(scaleX, 2) + Math.pow(scaleY, 2));
 
-            Utils.drawRotatedImage(angle, (int)(x + width / 2 - handler.getCamera().getOffsetX()), (int)(y + height / 2 - handler.getCamera().getOffsetY()), scale, scale, Assets.arrow, g);
+            Utils.drawRotatedImage(angle, (int)(x + width / 2 - handler.getCamera().getOffsetX()), (int)(y + height / 2 - handler.getCamera().getOffsetY()), 0, 3, scale, scale, Assets.arrow, g);
         }
 
         //draw ball target
@@ -91,6 +91,12 @@ public abstract class Ball extends Entity {
             velocityX *= 2.0/3.0;
             x += deltaX();
         }
+        else if(collisionWithBouncePad((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
+                collisionWithBouncePad((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
+            velocityX *= -1;
+            velocityX *= 2;
+            x += deltaX();
+        }
         else if(landedOutOfBounds((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
                 landedOutOfBounds((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
             x = lastX;
@@ -120,6 +126,12 @@ public abstract class Ball extends Entity {
                 collisionWithWall((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
             velocityY *= -1;
             velocityY *= 2.0/3.0;
+            y += deltaY();
+        }
+        else if(collisionWithBouncePad((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
+                collisionWithBouncePad((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
+            velocityY *= -1;
+            velocityY *= 2;
             y += deltaY();
         }
         else if(landedOutOfBounds((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
@@ -161,7 +173,10 @@ public abstract class Ball extends Entity {
 
     //___HELPER METHODS___
     protected boolean collisionWithWall(int tileX, int tileY) {
-        return handler.getHole().getTile(tileX, tileY).isSolid();
+        return handler.getHole().getTile(tileX, tileY).isWall();
+    }
+    protected boolean collisionWithBouncePad(int tileX, int tileY) {
+        return handler.getHole().getTile(tileX, tileY).isBouncePad();
     }
     protected boolean landedInHole(int tileX, int tileY) {
         return handler.getHole().getTile(tileX, tileY).isHole();
