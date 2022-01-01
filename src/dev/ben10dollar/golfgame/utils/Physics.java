@@ -12,6 +12,7 @@ public class Physics {
     public static final double COEFFICIENT_OF_KINETIC_FRICTION_BASELINE = 6;
     public static final double FORCE_X_PER_TILE_FROM_BALL = 10 * Tile.TILE_WIDTH;
     public static final double FORCE_Y_PER_TILE_FROM_BALL = 10 * Tile.TILE_HEIGHT;
+    public static final double BALL_MASS_BASELINE = 10;
 
     public static double[] kineticFriction(double deltaX, double deltaY, double coefficientOfKineticFriction, double mass) {
         double kineticFriction =  coefficientOfKineticFriction * mass * GRAVITY;

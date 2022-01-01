@@ -14,6 +14,7 @@ public class Hole {
 
     private int spawnX;
     private int spawnY;
+    private int par;
     private char[][] tiles;
     private boolean holeComplete;
 
@@ -41,12 +42,12 @@ public class Hole {
         height = Utils.parseInt(holeData[1]);
         spawnX = Utils.parseInt(holeData[2]) * Tile.TILE_WIDTH + Tile.TILE_WIDTH/2;
         spawnY = Utils.parseInt(holeData[3]) * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT/2;
+        par = Utils.parseInt(holeData[4]);;
 
         tiles = new char[height][width];
         for(int y=0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tiles[y][x] = holeData[(y * width + x) + 4].charAt(0);
-                System.out.println(tiles[y][x]);
+                tiles[y][x] = holeData[(y * width + x) + 5].charAt(0);
             }
         }
 
@@ -65,7 +66,7 @@ public class Hole {
     public int getHeight() {
         return height;
     }
-    public boolean getHoleComplete() {
+    public boolean holeComplete() {
         return holeComplete;
     }
     public void setHoleComplete(boolean holeComplete) {
@@ -76,5 +77,8 @@ public class Hole {
     }
     public int getSpawnY() {
         return spawnY;
+    }
+    public int getPar() {
+        return par;
     }
 }

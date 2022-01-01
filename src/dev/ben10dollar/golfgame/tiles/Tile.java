@@ -51,8 +51,12 @@ public abstract class Tile {
         if(id == 'b') return true;
         return false;
     }
-    public boolean isOutOfBounds() {
-        if(id == 'a' || id == 'l') return true;
+    public boolean isWater() {
+        if(id == 'a') return true;
+        return false;
+    }
+    public boolean isLava() {
+        if(id == 'l') return true;
         return false;
     }
 

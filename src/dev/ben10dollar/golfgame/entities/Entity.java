@@ -29,9 +29,10 @@ public abstract class Entity {
         this.height = height;
         this.mass = mass;
         this.skin = skin;
+        this.hole = hole;
 
 //        bounds = new Rectangle( (int).25 * width, (int).25 * height, (int).75 * width, (int).75 * height);
-        bounds = new Rectangle(width/8, height/8, width - width/8, height - height/8);
+        bounds = new Rectangle(width/4, height/4, width - width/4*2, height - height/4*2);
     }
 
     public abstract void tick();

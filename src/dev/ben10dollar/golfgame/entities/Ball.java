@@ -16,6 +16,7 @@ public abstract class Ball extends Entity {
 
     protected double velocityX;
     protected double velocityY;
+    protected int numOfStrokes;
 
     public Ball(Handler handler, Hole hole, int width, int height, double mass, BufferedImage skin) {
         super(handler, hole, width, height, mass, skin);
@@ -33,6 +34,8 @@ public abstract class Ball extends Entity {
 
             lastX = x;
             lastY = y;
+
+            numOfStrokes++;
         }
         changePosition();
         changeVelocity();
@@ -97,12 +100,21 @@ public abstract class Ball extends Entity {
             velocityX *= 2;
             x += deltaX();
         }
-        else if(landedOutOfBounds((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
-                landedOutOfBounds((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
+        else if(landedInWater((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
+                landedInWater((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
             x = lastX;
             y = lastY;
             velocityX = 0;
             velocityY = 0;
+            numOfStrokes++;
+        }
+        else if(landedInLava((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
+                landedInLava((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
+            x = lastX;
+            y = lastY;
+            velocityX = 0;
+            velocityY = 0;
+            numOfStrokes += 2;
         }
         else if(landedInHole((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
                 landedInHole((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
@@ -134,12 +146,21 @@ public abstract class Ball extends Entity {
             velocityY *= 2;
             y += deltaY();
         }
-        else if(landedOutOfBounds((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
-                landedOutOfBounds((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
+        else if(landedInWater((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
+                landedInWater((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
             x = lastX;
             y = lastY;
             velocityX = 0;
             velocityY = 0;
+            numOfStrokes++;
+        }
+        else if(landedInLava((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
+                landedInLava((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
+            x = lastX;
+            y = lastY;
+            velocityX = 0;
+            velocityY = 0;
+            numOfStrokes += 2;
         }
         else if(landedInHole((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
                 landedInHole((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
@@ -181,8 +202,11 @@ public abstract class Ball extends Entity {
     protected boolean landedInHole(int tileX, int tileY) {
         return handler.getHole().getTile(tileX, tileY).isHole();
     }
-    protected boolean landedOutOfBounds(int tileX, int tileY) {
-        return handler.getHole().getTile(tileX, tileY).isOutOfBounds();
+    protected boolean landedInWater(int tileX, int tileY) {
+        return handler.getHole().getTile(tileX, tileY).isWater();
+    }
+    protected boolean landedInLava(int tileX, int tileY) {
+        return handler.getHole().getTile(tileX, tileY).isLava();
     }
     private double deltaX() {
         return velocityX * (1 / (double)handler.getTargetFPS());
@@ -204,7 +228,9 @@ public abstract class Ball extends Entity {
     public void setVelocityX(double velocityX) {
         this.velocityX = velocityX;
     }
-
+    public int getScore() {
+        return numOfStrokes - hole.getPar();
+    }
 
 
     //___OLD CODE___
