@@ -149,6 +149,11 @@
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/graphics/Assets.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/Game.java</url>
           <line>154</line>
           <option name="timeStamp" value="13" />
@@ -169,22 +174,10 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-<<<<<<< HEAD
-          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/input/MouseManager.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/states/GameState.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-=======
           <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/entities/Ball.java</url>
           <line>33</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
->>>>>>> 5d69db6019a7df5bc64f54607563c8926633cbcb
       </breakpoints>
     </breakpoint-manager>
   </component>
