@@ -24,7 +24,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-//        System.out.println("Coordinates: " + mouseX + ", " + mouseY);
+        System.out.println("Coordinates: " + mouseX + ", " + mouseY);
     }
 
     @Override

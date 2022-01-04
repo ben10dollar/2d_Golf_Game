@@ -42,6 +42,7 @@ public class Game implements Runnable {
     private GameState gameState;
     private State menuState;
     private State settingsState;
+    private State currentState;
 
     //camera
     private Camera camera;
@@ -86,15 +87,16 @@ public class Game implements Runnable {
 
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-        settingsState = new SettingsState(handler);
-        State.setState(menuState);
+//        settingsState = new SettingsState(handler);
+        currentState = menuState;
+        mouseManager.setUiManager(currentState.getUiManager());
 
         clock = 0;
     }
     private void tick() {
         //updates every variable for the current game state
-        if(State.getState() != null)
-            State.getState().tick();
+        if(currentState != null)
+            currentState.tick();
         keyManager.tick();
     }
     private void render() {
@@ -110,8 +112,8 @@ public class Game implements Runnable {
         //clears screen
 
         //Draw here
-        if(State.getState() != null)
-        State.getState().render(g);
+        if(currentState != null)
+            currentState.render(g);
         //Stop drawing
 
         bs.show();
@@ -193,5 +195,12 @@ public class Game implements Runnable {
     }
     public GameState getGameState() {
         return gameState;
+    }
+    public State getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(State state) {
+        currentState = state;
     }
 }

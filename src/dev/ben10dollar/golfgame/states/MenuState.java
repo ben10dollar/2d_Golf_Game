@@ -21,13 +21,13 @@ public class MenuState extends State {
         uiManager.addObject(new UIImageButton(handler.getGame().getWidth()/2 - Assets.gameTileWidth * 40 / 2, handler.getGame().getHeight()/8, Assets.gameTileWidth * 40, Assets.gameTileHeight * 20, Assets.golphersName, new ClickListener() {
             @Override
             public void onClick() {
-                //setState(handler.getGame().getGameState());
+                System.out.println("hi!");
             }
         }));
         uiManager.addObject(new UIImageButton(handler.getGame().getWidth()/2 - Assets.gameTileWidth * 40 / 2, handler.getGame().getHeight()/2, Assets.gameTileWidth * 40, Assets.gameTileHeight * 20, Assets.startButton, new ClickListener() {
             @Override
             public void onClick() {
-                setState(handler.getGame().getGameState());
+                handler.getGame().setCurrentState(handler.getGame().getGameState());
             }
         }));
 
