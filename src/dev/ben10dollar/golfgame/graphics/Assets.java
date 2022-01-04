@@ -4,29 +4,48 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static final int width = 8, height = 8;
-    public static BufferedImage grass, dirt, water, sand, wall, hole, lava, ice, bouncePad, golfBall, bowlingBall, arrow;
+    public static final int gameTileWidth = 8, gameTileHeight = 8;
+    public static BufferedImage grass, dirt, water, sand, wall, hole, lava, ice, bouncePad, golfBall, bowlingBall, arrow, log;
+    public static final int uiTileWidth = 5*2*5+1, uiTileHeight = 9*2+1;
+    public static BufferedImage[] golphersName, startButton, background;
 
     public static void init() {
-        SpriteSheet spriteSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Sprite_Sheet.png"));
+        SpriteSheet gameSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Game_Sprite_Sheet.png"));
+        SpriteSheet uiSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/textures/UI_Sprite_Sheet.png"));
 
+        golphersName = new BufferedImage[2];
+        startButton = new BufferedImage[2];
+        background = new BufferedImage[2];
+
+        //Tiles
         //row 1
-        grass = spriteSheet.crop(0, 0, width, height);
-        dirt = spriteSheet.crop(width, 0, width, height);
-        sand = spriteSheet.crop(width * 2, 0, width, height);
-        water = spriteSheet.crop(width * 3, 0, width, height);
-        wall = spriteSheet.crop(width * 4, 0, width, height);
-        hole = spriteSheet.crop(width * 5, 0, width, height);
-        lava = spriteSheet.crop(width * 6, 0, width, height);
-        ice = spriteSheet.crop(width * 7, 0, width, height);
-        bouncePad = spriteSheet.crop(width * 7, height, width, height);
+        grass = gameSpriteSheet.crop(0, 0, gameTileWidth, gameTileHeight);
+        dirt = gameSpriteSheet.crop(gameTileWidth, 0, gameTileWidth, gameTileHeight);
+        sand = gameSpriteSheet.crop(gameTileWidth * 2, 0, gameTileWidth, gameTileHeight);
+        water = gameSpriteSheet.crop(gameTileWidth * 3, 0, gameTileWidth, gameTileHeight);
+        wall = gameSpriteSheet.crop(gameTileWidth * 4, 0, gameTileWidth, gameTileHeight);
+        hole = gameSpriteSheet.crop(gameTileWidth * 5, 0, gameTileWidth, gameTileHeight);
+        lava = gameSpriteSheet.crop(gameTileWidth * 6, 0, gameTileWidth, gameTileHeight);
+        ice = gameSpriteSheet.crop(gameTileWidth * 7, 0, gameTileWidth, gameTileHeight);
+        bouncePad = gameSpriteSheet.crop(gameTileWidth * 7, gameTileHeight, gameTileWidth, gameTileHeight);
 
         //row 2
-        golfBall = spriteSheet.crop(0, height, width, height);
-        bowlingBall = spriteSheet.crop(width, height, width * 2, height * 2);
+        golfBall = gameSpriteSheet.crop(0, gameTileHeight, gameTileWidth, gameTileHeight);
+        bowlingBall = gameSpriteSheet.crop(gameTileWidth, gameTileHeight, gameTileWidth * 2, gameTileHeight * 2);
 
         //row 3
-        arrow = spriteSheet.crop(0, height * 3, width * 2, height - 1);
-    }
+        arrow = gameSpriteSheet.crop(0, gameTileHeight * 3, gameTileWidth * 2, gameTileHeight);
+        log = gameSpriteSheet.crop(0, gameTileHeight * 5, gameTileWidth * 3, gameTileHeight);
 
+
+
+        //UI
+        //row 1
+        golphersName[0] = uiSpriteSheet.crop(1, 0, uiTileWidth, uiTileHeight-1);
+        golphersName[1] = uiSpriteSheet.crop(1, 0, uiTileWidth, uiTileHeight-1);
+        startButton[0] = uiSpriteSheet.crop(1, uiTileHeight, uiTileWidth, uiTileHeight);
+        startButton[1] = uiSpriteSheet.crop(1, uiTileHeight, uiTileWidth, uiTileHeight);
+        background[0] = ImageLoader.loadImage("/textures/Golf_Background.jpg");
+        background[1] = ImageLoader.loadImage("/textures/Golf_Background.jpg");
+    }
 }

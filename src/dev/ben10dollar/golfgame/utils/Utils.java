@@ -44,7 +44,7 @@ public class Utils {
         //transformations are reverse order
         transform.translate(x, y);  //4: translate anchor pts to intended coordinates
         transform.rotate(angle);  //3: rotate
-        transform.translate(-scaleX/2, -scaleY/2);  //2.5: shift middle point (now translated due to scale) back to center
+        transform.translate(-scaleX, -scaleY);  //2.5: shift middle point (now translated due to scale) back to center
         transform.scale(scaleX, scaleY);  //2: scale
         transform.translate(-anchorX, -anchorY);  //1 :translate anchor pts to origin
 

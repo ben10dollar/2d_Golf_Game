@@ -17,17 +17,22 @@ public abstract class Ball extends Entity {
     protected double velocityX;
     protected double velocityY;
     protected int numOfStrokes;
+    protected boolean visible;
 
     public Ball(Handler handler, Hole hole, int width, int height, double mass, BufferedImage skin) {
         super(handler, hole, width, height, mass, skin);
 
         velocityX = INITIAL_SPEED * 0;
         velocityY = INITIAL_SPEED * 0;
+
+        visible = true;
     }
 
     @Override
     public void tick() {
-
+        if (handler.getHole().holeComplete()){
+            visible = false;
+        }
         if(velocityX == 0 && velocityY == 0 && handler.getMouseManager().isLeftPressed()) {
             velocityX = (handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.FORCE_X_PER_TILE_FROM_BALL / mass;
             velocityY = (handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.FORCE_Y_PER_TILE_FROM_BALL / mass;
@@ -47,8 +52,9 @@ public abstract class Ball extends Entity {
     @Override
     public void render(Graphics g) {
         //draw ball
-        g.drawImage(skin, (int)(x - handler.getCamera().getOffsetX()), (int)(y - handler.getCamera().getOffsetY()), width, height, null);
-
+        if(visible) {
+            g.drawImage(skin, (int) (x - handler.getCamera().getOffsetX()), (int) (y - handler.getCamera().getOffsetY()), width, height, null);
+        }
         //draw arrow
         if(velocityX == 0 && velocityY == 0 && !handler.getMouseManager().isLeftPressed()) {
             double angle = Physics.angle(handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX()),
@@ -200,7 +206,11 @@ public abstract class Ball extends Entity {
         return handler.getHole().getTile(tileX, tileY).isBouncePad();
     }
     protected boolean landedInHole(int tileX, int tileY) {
-        return handler.getHole().getTile(tileX, tileY).isHole();
+        double totalVelocity = Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
+        if (handler.getHole().getTile(tileX, tileY).isHole() && totalVelocity < 100.0) {
+            return true;
+        }
+        else {return false;}
     }
     protected boolean landedInWater(int tileX, int tileY) {
         return handler.getHole().getTile(tileX, tileY).isWater();
@@ -231,6 +241,7 @@ public abstract class Ball extends Entity {
     public int getScore() {
         return numOfStrokes - hole.getPar();
     }
+    public void setVisible(boolean visible){this.visible = visible;}
 
 
     //___OLD CODE___

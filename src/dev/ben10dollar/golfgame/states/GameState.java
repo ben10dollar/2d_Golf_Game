@@ -2,7 +2,10 @@ package dev.ben10dollar.golfgame.states;
 
 import dev.ben10dollar.golfgame.entities.GolfBall;
 import dev.ben10dollar.golfgame.entities.Ball;
+import dev.ben10dollar.golfgame.graphics.Assets;
 import dev.ben10dollar.golfgame.holes.Hole;
+import dev.ben10dollar.golfgame.user_interface.ClickListener;
+import dev.ben10dollar.golfgame.user_interface.UIImageButton;
 import dev.ben10dollar.golfgame.utils.Handler;
 
 import java.awt.*;
@@ -23,12 +26,18 @@ public class GameState extends State {
         holesInCourse = new LinkedList<Hole>();
 //        addHoleToCourse(new Hole(handler,"res/holes/Hole_1.txt"));
 //        addHoleToCourse(new Hole(handler,"res/holes/Hole_2.txt"));
-//        addHoleToCourse(new Hole(handler,"res/holes/Hole_3.txt"));
+        addHoleToCourse(new Hole(handler,"res/holes/Hole_3.txt"));
         addHoleToCourse(new Hole(handler,"res/holes/Hole_4.txt"));
 
         currentHole = holesInCourse.remove();
         ball = new GolfBall(handler, currentHole);
         //ball = new BowlingBall(handler, currentHole,40);
+
+//        uiManager.addObject(new UIImageButton(0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), Assets.background, new ClickListener() {
+//            @Override
+//            public void onClick() {
+//            }
+//        }));
     }
 
     @Override

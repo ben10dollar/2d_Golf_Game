@@ -2,6 +2,7 @@ package dev.ben10dollar.golfgame.input;
 
 import dev.ben10dollar.golfgame.Game;
 import dev.ben10dollar.golfgame.states.GameState;
+import dev.ben10dollar.golfgame.user_interface.UIManager;
 import dev.ben10dollar.golfgame.utils.Handler;
 
 import java.awt.event.MouseEvent;
@@ -15,6 +16,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     private Handler handler;
     private boolean leftPressed, rightPressed;
     private int mouseX, mouseY;
+    private UIManager uiManager;
 
     public MouseManager(Handler handler) {
         this.handler = handler;
@@ -39,6 +41,9 @@ public class MouseManager implements MouseListener, MouseMotionListener {
             leftPressed = false;
         else if(e.getButton() == MouseEvent.BUTTON2)
             rightPressed = false;
+
+        if(uiManager != null)
+            uiManager.onMouseRelease(e);
     }
 
     @Override
@@ -60,6 +65,9 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     public void mouseMoved(MouseEvent e) {
          mouseX = e.getX();
          mouseY = e.getY();
+
+        if(uiManager != null)
+            uiManager.onMouseMove(e);
     }
 
 
@@ -77,5 +85,11 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     public int getMouseY() {
         return mouseY;
     }
+    public UIManager getUIManager() {
+        return uiManager;
+    }
 
+    public void setUiManager(UIManager uiManager) {
+        this.uiManager = uiManager;
+    }
 }

@@ -1,6 +1,7 @@
 package dev.ben10dollar.golfgame.utils;
 
 import dev.ben10dollar.golfgame.Game;
+import dev.ben10dollar.golfgame.display.Display;
 import dev.ben10dollar.golfgame.entities.Ball;
 import dev.ben10dollar.golfgame.graphics.Camera;
 import dev.ben10dollar.golfgame.holes.Hole;
