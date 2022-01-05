@@ -7,7 +7,7 @@ public class Assets {
     public static final int gameTileWidth = 8, gameTileHeight = 8;
     public static BufferedImage grass, dirt, water, sand, wall, hole, lava, ice, bouncePad, golfBall, bowlingBall, arrow, log;
     public static final int uiTileWidth = 5*2*5+1, uiTileHeight = 9*2+1;
-    public static BufferedImage[] golphersName, startButton, background;
+    public static BufferedImage[] golphersName, startButton, gameEnd, replayButton, background;
     public static BufferedImage gopher;
 
     public static void init() {
@@ -16,6 +16,8 @@ public class Assets {
 
         golphersName = new BufferedImage[2];
         startButton = new BufferedImage[2];
+        gameEnd = new BufferedImage[2];
+        replayButton = new BufferedImage[2];
         background = new BufferedImage[2];
 
         //Tiles
@@ -46,6 +48,10 @@ public class Assets {
         golphersName[1] = uiSpriteSheet.crop(1, 0, uiTileWidth, uiTileHeight-1);
         startButton[0] = uiSpriteSheet.crop(1, uiTileHeight, uiTileWidth, uiTileHeight);
         startButton[1] = uiSpriteSheet.crop(1, uiTileHeight, uiTileWidth, uiTileHeight);
+        gameEnd[0] = uiSpriteSheet.crop(1, (uiTileHeight+1)*2-1, uiTileWidth, uiTileHeight);
+        gameEnd[1] = uiSpriteSheet.crop(1, (uiTileHeight+1)*2-1, uiTileWidth, uiTileHeight);
+        replayButton[0] = uiSpriteSheet.crop(1, (uiTileHeight+1)*3-1, uiTileWidth, uiTileHeight);
+        replayButton[1] = uiSpriteSheet.crop(1, (uiTileHeight+1)*3-1, uiTileWidth, uiTileHeight);
         background[0] = ImageLoader.loadImage("/textures/Golf_Background.jpg");
         background[1] = ImageLoader.loadImage("/textures/Golf_Background.jpg");
 

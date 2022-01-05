@@ -27,6 +27,7 @@ public class MenuState extends State {
         uiManager.addObject(new UIImageButton(handler.getGame().getWidth()/2 - Assets.gameTileWidth * 40 / 2, handler.getGame().getHeight()/2, Assets.gameTileWidth * 40, Assets.gameTileHeight * 20, Assets.startButton, new ClickListener() {
             @Override
             public void onClick() {
+                handler.getGame().setGameState(new GameState(handler));
                 handler.getGame().setCurrentState(handler.getGame().getGameState());
             }
         }));

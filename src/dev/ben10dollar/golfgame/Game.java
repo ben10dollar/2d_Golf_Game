@@ -5,10 +5,7 @@ import dev.ben10dollar.golfgame.graphics.Assets;
 import dev.ben10dollar.golfgame.graphics.Camera;
 import dev.ben10dollar.golfgame.input.KeyManager;
 import dev.ben10dollar.golfgame.input.MouseManager;
-import dev.ben10dollar.golfgame.states.GameState;
-import dev.ben10dollar.golfgame.states.MenuState;
-import dev.ben10dollar.golfgame.states.SettingsState;
-import dev.ben10dollar.golfgame.states.State;
+import dev.ben10dollar.golfgame.states.*;
 import dev.ben10dollar.golfgame.utils.Handler;
 
 import java.awt.*;
@@ -39,10 +36,7 @@ public class Game implements Runnable {
     private Graphics g;
 
     //states
-    private GameState gameState;
-    private State menuState;
-    private State settingsState;
-    private State currentState;
+    private State menuState, gameState, endState, currentState;
 
     //camera
     private Camera camera;
@@ -85,11 +79,10 @@ public class Game implements Runnable {
         display.getCanvas().addMouseListener(mouseManager);
         display.getCanvas().addMouseMotionListener(mouseManager);
 
-        gameState = new GameState(handler);
         menuState = new MenuState(handler);
+        endState = new EndState(handler);
 //        settingsState = new SettingsState(handler);
-        currentState = menuState;
-        mouseManager.setUiManager(currentState.getUiManager());
+        setCurrentState(menuState);
 
         clock = 0;
     }
@@ -193,8 +186,14 @@ public class Game implements Runnable {
     public MouseManager getMouseManager() {
         return mouseManager;
     }
+    public MenuState getMenuState() {
+        return (MenuState)menuState;
+    }
     public GameState getGameState() {
-        return gameState;
+        return (GameState)gameState;
+    }
+    public EndState getEndState() {
+        return (EndState)endState;
     }
     public State getCurrentState() {
         return currentState;
@@ -202,5 +201,9 @@ public class Game implements Runnable {
 
     public void setCurrentState(State state) {
         currentState = state;
+        mouseManager.setUiManager(currentState.getUiManager());
+    }
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
 }

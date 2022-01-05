@@ -138,12 +138,6 @@
           <properties class="java.io.FileNotFoundException" package="java.io" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/dev/ben10dollar/golfgame/Game.java</url>
-          <line>20</line>
-          <properties field="SCALE" class="dev.ben10dollar.golfgame.Game" />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

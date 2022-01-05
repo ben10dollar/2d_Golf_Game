@@ -32,5 +32,6 @@ public class Handler {
     }
 
     public void setGame(Game game) { this.game = game; }
+    public void setCurrentState(State state) { game.setCurrentState(state); }
 //    public void setHole(Hole hole) { game.getGameState().setCurrentHole(hole); }
 }

@@ -17,7 +17,6 @@ public class GameState extends State {
     private Queue<Hole> holesInCourse;
     private Hole currentHole;
     private Ball ball;
-    private boolean courseDone;
     private int totalScore;
 
     public GameState(Handler handler) {
@@ -25,19 +24,13 @@ public class GameState extends State {
 
         holesInCourse = new LinkedList<Hole>();
         addHoleToCourse(new Hole(handler,"res/holes/Hole_1.txt"));
-//        addHoleToCourse(new Hole(handler,"res/holes/Hole_2.txt"));
-        addHoleToCourse(new Hole(handler,"res/holes/Hole_3.txt"));
-        addHoleToCourse(new Hole(handler,"res/holes/Hole_4.txt"));
+        addHoleToCourse(new Hole(handler,"res/holes/Hole_2.txt"));
+//        addHoleToCourse(new Hole(handler,"res/holes/Hole_3.txt"));
+//        addHoleToCourse(new Hole(handler,"res/holes/Hole_4.txt"));
 
         currentHole = holesInCourse.remove();
         ball = new GolfBall(handler, currentHole);
         //ball = new BowlingBall(handler, currentHole,40);
-
-//        uiManager.addObject(new UIImageButton(0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), Assets.background, new ClickListener() {
-//            @Override
-//            public void onClick() {
-//            }
-//        }));
     }
 
     @Override
@@ -51,7 +44,7 @@ public class GameState extends State {
             ball = new GolfBall(handler, currentHole);
             //ball = new BowlingBall(handler, currentHole, 40);
         }
-        else courseDone = true;
+        else handler.setCurrentState(handler.getGame().getEndState());
     }
     @Override
     public void render(Graphics g) {

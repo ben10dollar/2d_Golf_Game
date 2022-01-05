@@ -17,20 +17,25 @@ public class EndState extends State {
             public void onClick() {
             }
         }));
-        uiManager.addObject(new UIImageButton(handler.getGame().getWidth() / 2 - Assets.gameTileWidth * 40 / 2, handler.getGame().getHeight() / 8, Assets.gameTileWidth * 40, Assets.gameTileHeight * 20, Assets.golphersName, new ClickListener() {
+        uiManager.addObject(new UIImageButton(handler.getGame().getWidth() / 2 - Assets.gameTileWidth * 40 / 2, handler.getGame().getHeight() / 8, Assets.gameTileWidth * 40, Assets.gameTileHeight * 20, Assets.gameEnd, new ClickListener() {
             @Override
             public void onClick() {
-                handler.getCurrentState() = handler.getGame().getGameState();
+            }
+        }));
+        uiManager.addObject(new UIImageButton(handler.getGame().getWidth() / 2 - Assets.gameTileWidth * 40 / 2, handler.getGame().getHeight() / 2, Assets.gameTileWidth * 40, Assets.gameTileHeight * 20, Assets.replayButton, new ClickListener() {
+            @Override
+            public void onClick() {
+               handler.setCurrentState(handler.getGame().getMenuState());
             }
         }));
     }
 
     @Override
     public void tick() {
-
+        uiManager.tick();
     }
     @Override
     public void render(Graphics g) {
-
+        uiManager.render(g);
     }
 }

@@ -8,6 +8,8 @@ import dev.ben10dollar.golfgame.utils.Handler;
 import dev.ben10dollar.golfgame.utils.Utils;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 public abstract class Ball extends Entity {
@@ -16,7 +18,7 @@ public abstract class Ball extends Entity {
 
     protected double velocityX;
     protected double velocityY;
-    protected int numOfStrokes;
+    protected int score;
     protected boolean visible;
 
     public Ball(Handler handler, Hole hole, int width, int height, double mass, BufferedImage skin) {
@@ -25,6 +27,7 @@ public abstract class Ball extends Entity {
         velocityX = INITIAL_SPEED * 0;
         velocityY = INITIAL_SPEED * 0;
 
+        score = -hole.getPar();
         visible = true;
     }
 
@@ -40,7 +43,7 @@ public abstract class Ball extends Entity {
             lastX = x;
             lastY = y;
 
-            numOfStrokes++;
+            score++;
         }
         changePosition();
         changeVelocity();
@@ -66,14 +69,17 @@ public abstract class Ball extends Entity {
 
             Utils.drawRotatedImage(angle, (int)(x + width / 2 - handler.getCamera().getOffsetX()), (int)(y + height / 2 - handler.getCamera().getOffsetY()), 0, 3, scale, scale, Assets.arrow, g);
 
-            g.drawImage(Assets.gopher, (int)(x + width / 2 - handler.getCamera().getOffsetX() - width*3*2/3), (int)(y + height / 2 - handler.getCamera().getOffsetY()) - height*3, width*3, height*3, null);
+            int gopherSizeInTiles = 3;
+            BufferedImage gopher = Assets.gopher;
+            if(angle > Math.PI/2) {
+                AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+                tx.translate(-gopher.getWidth(), 0);
+                AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+                gopher = op.filter(gopher, null);
+            }
+            g.drawImage(gopher, (int)(x + width/2 - handler.getCamera().getOffsetX() + 60*Math.cos(angle + Math.PI) - width/2*gopherSizeInTiles), (int)(y + height/2 - handler.getCamera().getOffsetY() + 60*Math.sin(angle + Math.PI) - height/2*gopherSizeInTiles), width*gopherSizeInTiles, height*gopherSizeInTiles, null);
         }
 
-        //draw ball target
-//        g.setColor(Color.red);
-//        g.fillRect((int) (x + bounds.x - handler.getCamera().getOffsetX()),
-//                (int) (y + bounds.y - handler.getCamera().getOffsetY()),
-//                bounds.width, bounds.height);
     }
 
 
@@ -114,7 +120,7 @@ public abstract class Ball extends Entity {
             y = lastY;
             velocityX = 0;
             velocityY = 0;
-            numOfStrokes++;
+            score++;
         }
         else if(landedInLava((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
                 landedInLava((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
@@ -122,7 +128,7 @@ public abstract class Ball extends Entity {
             y = lastY;
             velocityX = 0;
             velocityY = 0;
-            numOfStrokes += 2;
+            score += 2;
         }
         else if(landedInHole((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
                 landedInHole((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
@@ -160,7 +166,7 @@ public abstract class Ball extends Entity {
             y = lastY;
             velocityX = 0;
             velocityY = 0;
-            numOfStrokes++;
+            score++;
         }
         else if(landedInLava((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
                 landedInLava((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
@@ -168,7 +174,7 @@ public abstract class Ball extends Entity {
             y = lastY;
             velocityX = 0;
             velocityY = 0;
-            numOfStrokes += 2;
+            score += 2;
         }
         else if(landedInHole((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
                 landedInHole((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
@@ -208,11 +214,9 @@ public abstract class Ball extends Entity {
         return handler.getHole().getTile(tileX, tileY).isBouncePad();
     }
     protected boolean landedInHole(int tileX, int tileY) {
-        double totalVelocity = Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
-        if (handler.getHole().getTile(tileX, tileY).isHole() && totalVelocity < 100.0) {
-            return true;
-        }
-        else {return false;}
+//        double totalVelocity = Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2));
+//        if (handler.getHole().getTile(tileX, tileY).isHole() && totalVelocity < 100.0)
+        return handler.getHole().getTile(tileX, tileY).isHole();
     }
     protected boolean landedInWater(int tileX, int tileY) {
         return handler.getHole().getTile(tileX, tileY).isWater();
@@ -241,7 +245,7 @@ public abstract class Ball extends Entity {
         this.velocityX = velocityX;
     }
     public int getScore() {
-        return numOfStrokes - hole.getPar();
+        return score;
     }
     public void setVisible(boolean visible){this.visible = visible;}
 

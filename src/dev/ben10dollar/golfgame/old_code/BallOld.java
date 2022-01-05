@@ -109,5 +109,14 @@
 //        System.out.println("Angle: " + angle * 360 / (2*Math.PI));
 //        return angle;
 //    }
+
+
+
+
+//draw ball target
+//        g.setColor(Color.red);
+//        g.fillRect((int) (x + bounds.x - handler.getCamera().getOffsetX()),
+//                (int) (y + bounds.y - handler.getCamera().getOffsetY()),
+//                bounds.width, bounds.height);
 //
 //}
