@@ -8,6 +8,7 @@ public class Assets {
     public static BufferedImage grass, dirt, water, sand, wall, hole, lava, ice, bouncePad, golfBall, bowlingBall, arrow, log;
     public static final int uiTileWidth = 5*2*5+1, uiTileHeight = 9*2+1;
     public static BufferedImage[] golphersName, startButton, background;
+    public static BufferedImage gopher;
 
     public static void init() {
         SpriteSheet gameSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Game_Sprite_Sheet.png"));
@@ -47,5 +48,9 @@ public class Assets {
         startButton[1] = uiSpriteSheet.crop(1, uiTileHeight, uiTileWidth, uiTileHeight);
         background[0] = ImageLoader.loadImage("/textures/Golf_Background.jpg");
         background[1] = ImageLoader.loadImage("/textures/Golf_Background.jpg");
+
+
+
+        gopher = ImageLoader.loadImage("/textures/Gopher.png");
     }
 }

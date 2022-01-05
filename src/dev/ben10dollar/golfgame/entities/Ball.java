@@ -56,7 +56,7 @@ public abstract class Ball extends Entity {
             g.drawImage(skin, (int) (x - handler.getCamera().getOffsetX()), (int) (y - handler.getCamera().getOffsetY()), width, height, null);
         }
         //draw arrow
-        if(velocityX == 0 && velocityY == 0 && !handler.getMouseManager().isLeftPressed()) {
+        if(velocityX == 0 && velocityY == 0) {
             double angle = Physics.angle(handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX()),
                     handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY()),
                     handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX()) < 0);
@@ -65,6 +65,8 @@ public abstract class Ball extends Entity {
             double scale = Math.sqrt(Math.pow(scaleX, 2) + Math.pow(scaleY, 2));
 
             Utils.drawRotatedImage(angle, (int)(x + width / 2 - handler.getCamera().getOffsetX()), (int)(y + height / 2 - handler.getCamera().getOffsetY()), 0, 3, scale, scale, Assets.arrow, g);
+
+            g.drawImage(Assets.gopher, (int)(x + width / 2 - handler.getCamera().getOffsetX() - width*3*2/3), (int)(y + height / 2 - handler.getCamera().getOffsetY()) - height*3, width*3, height*3, null);
         }
 
         //draw ball target

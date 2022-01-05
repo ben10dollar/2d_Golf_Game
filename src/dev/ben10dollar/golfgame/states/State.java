@@ -14,16 +14,7 @@ public abstract class State {
     public State(Handler handler) {
         this.handler = handler;
         uiManager = new UIManager(handler);
-        //handler.getMouseManager().setUiManager(uiManager);
     }
-
-//    public  void setState(State state) {
-//        currentState = state;
-//    }
-//
-//    public State getState() {
-//        return currentState;
-//    }
 
     public abstract void tick();
 

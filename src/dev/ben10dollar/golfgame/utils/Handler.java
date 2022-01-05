@@ -8,6 +8,7 @@ import dev.ben10dollar.golfgame.holes.Hole;
 import dev.ben10dollar.golfgame.input.KeyManager;
 import dev.ben10dollar.golfgame.input.MouseManager;
 import dev.ben10dollar.golfgame.states.GameState;
+import dev.ben10dollar.golfgame.states.State;
 
 public class Handler {
 
@@ -26,6 +27,9 @@ public class Handler {
     public KeyManager getKeyManager() { return game.getKeyManager(); }
     public MouseManager getMouseManager() { return game.getMouseManager(); }
     public int getTargetFPS() { return game.TARGET_FPS; }
+    public State getCurrentState() {
+        return game.getCurrentState();
+    }
 
     public void setGame(Game game) { this.game = game; }
 //    public void setHole(Hole hole) { game.getGameState().setCurrentHole(hole); }
