@@ -5,6 +5,7 @@ import dev.ben10dollar.golfgame.holes.Course;
 import dev.ben10dollar.golfgame.holes.Hole;
 import dev.ben10dollar.golfgame.holes.Player;
 import dev.ben10dollar.golfgame.user_interface.ClickListener;
+import dev.ben10dollar.golfgame.user_interface.UIManager;
 import dev.ben10dollar.golfgame.user_interface.UITextButton;
 import dev.ben10dollar.golfgame.utils.Handler;
 
@@ -17,7 +18,7 @@ public class GameState extends State {
     private Course golfCourse;
     //    private Hole currentHole;
 //    private Ball ball;
-    private UITextButton totalScoreCounter, strokeCounter;
+    private UITextButton totalScoreCounter, strokeCounter, momentum, kineticEnergy;
 
     public GameState(Handler handler) {
         super(handler);
@@ -41,6 +42,18 @@ public class GameState extends State {
             }
         });
         uiManager.addObject(strokeCounter);
+        momentum = new UITextButton(handler.getWidth() * 16.5 / 20, handler.getHeight() * 1 / 20 * 5, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+            @Override
+            public void onClick() {
+            }
+        });
+        uiManager.addObject(momentum);
+        kineticEnergy = new UITextButton(handler.getWidth() * 16.5 / 20, handler.getHeight() * 1 / 20 * 7, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+            @Override
+            public void onClick() {
+            }
+        });
+        uiManager.addObject(kineticEnergy);
     }
 
     @Override
@@ -49,7 +62,6 @@ public class GameState extends State {
         if(!golfCourse.isCourseComplete()) {
             golfCourse.tick();
             for(Player player:players) {
-                totalScoreCounter.setText("Strokes: " + String.valueOf(player.getStrokes()));
                 strokeCounter.setText("Total Score: " + String.valueOf(player.getTotalScore()));
             }
         }
@@ -60,5 +72,10 @@ public class GameState extends State {
     public void render(Graphics g) {
         golfCourse.render(g);
         uiManager.render(g);
+    }
+
+
+    public UIManager getUIManager() {
+        return uiManager;
     }
 }

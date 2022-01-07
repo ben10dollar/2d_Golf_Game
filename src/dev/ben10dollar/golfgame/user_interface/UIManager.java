@@ -45,8 +45,8 @@ public class UIManager {
     public Handler getHandler() {
         return handler;
     }
-    public ArrayList<UIObject> getObjects() {
-        return objects;
+    public UIObject getObject(int index) {
+        return objects.get(index);
     }
     public void setHandler(Handler handler) {
         this.handler = handler;

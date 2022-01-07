@@ -2,6 +2,7 @@ package dev.ben10dollar.golfgame.entities;
 
 import dev.ben10dollar.golfgame.graphics.Assets;
 import dev.ben10dollar.golfgame.holes.Player;
+import dev.ben10dollar.golfgame.user_interface.UITextButton;
 import dev.ben10dollar.golfgame.utils.Physics;
 import dev.ben10dollar.golfgame.tiles.Tile;
 import dev.ben10dollar.golfgame.utils.Handler;
@@ -34,7 +35,9 @@ public abstract class Ball extends Entity {
     @Override
     public void tick() {
         if(!ballInHole) {
-            player.setStrokes(strokes);
+            ((UITextButton)handler.getCurrentState().getUiManager().getObject(1)).setText("Strokes: " + String.valueOf(strokes));
+            ((UITextButton)handler.getCurrentState().getUiManager().getObject(2)).setText("Velocity): " + String.valueOf((int)Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2))));
+            ((UITextButton)handler.getCurrentState().getUiManager().getObject(3)).setText("KE (kJ): " + String.valueOf((int)(1.0/2.0*mass*(Math.pow(velocityX, 2) + Math.pow(velocityY, 2))/1000)));
             if(velocityX == 0 && velocityY == 0 && handler.getMouseManager().isLeftPressed()) {
                 velocityX = (handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.FORCE_X_PER_TILE_FROM_BALL / mass;
                 velocityY = (handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.FORCE_Y_PER_TILE_FROM_BALL / mass;
