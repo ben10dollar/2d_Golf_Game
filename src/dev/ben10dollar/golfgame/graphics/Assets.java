@@ -1,5 +1,6 @@
 package dev.ben10dollar.golfgame.graphics;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
@@ -9,6 +10,7 @@ public class Assets {
     public static final int uiTileWidth = 5*2*5+1-2, uiTileHeight = 9*2+1;
     public static BufferedImage[] golphersName, startButton, gameEnd, replayButton, background;
     public static BufferedImage gopher;
+    public static Font font28, font56;
 
     public static void init() {
         SpriteSheet gameSpriteSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Game_Sprite_Sheet.png"));
@@ -56,7 +58,10 @@ public class Assets {
         background[1] = ImageLoader.loadImage("/textures/Golf_Background.jpg");
 
 
-
         gopher = ImageLoader.loadImage("/textures/Gopher.png");
+
+
+        font28 = FontLoader.loadFont("res/fonts/times_new_roman.ttf", 28);
+        font56 = FontLoader.loadFont("res/fonts/times_new_roman.ttf", 56);
     }
 }

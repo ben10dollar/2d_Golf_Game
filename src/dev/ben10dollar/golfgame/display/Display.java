@@ -38,6 +38,7 @@ public class Display {
         frame.add(canvas);
         frame.pack();
         //packs all of the canvas into the frame
+
     }
 
 

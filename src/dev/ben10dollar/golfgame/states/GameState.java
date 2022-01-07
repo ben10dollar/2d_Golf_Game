@@ -3,6 +3,7 @@ package dev.ben10dollar.golfgame.states;
 import dev.ben10dollar.golfgame.entities.GolfBall;
 import dev.ben10dollar.golfgame.entities.Ball;
 import dev.ben10dollar.golfgame.graphics.Assets;
+import dev.ben10dollar.golfgame.graphics.Text;
 import dev.ben10dollar.golfgame.holes.Hole;
 import dev.ben10dollar.golfgame.user_interface.ClickListener;
 import dev.ben10dollar.golfgame.user_interface.UIImageButton;
@@ -35,10 +36,6 @@ public class GameState extends State {
         ball = new GolfBall(handler, currentHole);
         //ball = new BowlingBall(handler, currentHole,40);
 
-        button = new JButton("Button");
-        button.setBounds(50,100,95,30);
-        handler.getGame().getDisplay().getFrame().add(button);
-
     }
 
     @Override
@@ -58,8 +55,6 @@ public class GameState extends State {
     public void render(Graphics g) {
         currentHole.render(g);
         ball.render(g);
-        handler.getGame().getDisplay().getFrame().add(button);
-
     }
 
     public Hole getCurrentHole() {

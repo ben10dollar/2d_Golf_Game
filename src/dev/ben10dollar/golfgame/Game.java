@@ -8,6 +8,7 @@ import dev.ben10dollar.golfgame.input.MouseManager;
 import dev.ben10dollar.golfgame.states.*;
 import dev.ben10dollar.golfgame.utils.Handler;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -107,6 +108,7 @@ public class Game implements Runnable {
         //Draw here
         if(currentState != null)
             currentState.render(g);
+
         //Stop drawing
 
         bs.show();
@@ -143,7 +145,7 @@ public class Game implements Runnable {
             }
 
             if(timer >= 1_000_000_000) {
-                // System.out.println("Ticks and Frames: " + ticks);
+                //System.out.println("Ticks and Frames: " + ticks);
                 ticks = 0;
                 timer = 0;
                 clock++;
