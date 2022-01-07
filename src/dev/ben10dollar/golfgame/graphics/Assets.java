@@ -6,7 +6,7 @@ public class Assets {
 
     public static final int gameTileWidth = 8, gameTileHeight = 8;
     public static BufferedImage grass, dirt, water, sand, wall, hole, lava, ice, bouncePad, golfBall, bowlingBall, arrow, log;
-    public static final int uiTileWidth = 5*2*5+1, uiTileHeight = 9*2+1;
+    public static final int uiTileWidth = 5*2*5+1-2, uiTileHeight = 9*2+1;
     public static BufferedImage[] golphersName, startButton, gameEnd, replayButton, background;
     public static BufferedImage gopher;
 

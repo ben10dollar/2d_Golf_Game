@@ -198,6 +198,9 @@ public class Game implements Runnable {
     public State getCurrentState() {
         return currentState;
     }
+    public Display getDisplay() {
+        return display;
+    }
 
     public void setCurrentState(State state) {
         currentState = state;
