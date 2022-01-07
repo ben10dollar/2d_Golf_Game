@@ -28,16 +28,26 @@ public class UITextButton extends UIObject{
     }
     @Override
     public void render(Graphics g) {
-        int[] textMeasurements = Utils.drawString(g, text, (int)x, (int)y, center, color, font);
+        FontMetrics fm = g.getFontMetrics(font);
+        g.setColor(Color.LIGHT_GRAY);
+
+        bounds.x = (int)x - fm.stringWidth(text)/2;
+        bounds.width = fm.stringWidth(text);
+        bounds.y = (int)y - fm.getHeight()/2;
+        bounds.height = fm.getHeight();
+
+        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
         g.setColor(Color.BLACK);
-        bounds.x = (int)x - textMeasurements[0]/2;
-        bounds.width = textMeasurements[0];
-        bounds.y = (int)y - textMeasurements[1]/2;
-        bounds.height = textMeasurements[1];
         g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+
+        Utils.drawString(g, bounds, text, (int)x, (int)y, center, color, font);
     }
     @Override
     public void onClick() {
         clicker.onClick();
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

@@ -1,68 +1,64 @@
 package dev.ben10dollar.golfgame.states;
 
-import dev.ben10dollar.golfgame.entities.GolfBall;
-import dev.ben10dollar.golfgame.entities.Ball;
 import dev.ben10dollar.golfgame.graphics.Assets;
+import dev.ben10dollar.golfgame.holes.Course;
 import dev.ben10dollar.golfgame.holes.Hole;
+import dev.ben10dollar.golfgame.holes.Player;
 import dev.ben10dollar.golfgame.user_interface.ClickListener;
-import dev.ben10dollar.golfgame.user_interface.UIImageButton;
+import dev.ben10dollar.golfgame.user_interface.UITextButton;
 import dev.ben10dollar.golfgame.utils.Handler;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
 
 public class GameState extends State {
 
-    private Queue<Hole> holesInCourse;
-    private Hole currentHole;
-    private Ball ball;
-    private int totalScore;
-
-    JButton button;
+    private ArrayList<Player> players;
+    private Course golfCourse;
+    //    private Hole currentHole;
+//    private Ball ball;
+    private UITextButton totalScoreCounter, strokeCounter;
 
     public GameState(Handler handler) {
         super(handler);
 
-        holesInCourse = new LinkedList<Hole>();
-        addHoleToCourse(new Hole(handler,"res/holes/Hole_1.txt"));
-        addHoleToCourse(new Hole(handler,"res/holes/Hole_2.txt"));
-//        addHoleToCourse(new Hole(handler,"res/holes/Hole_3.txt"));
-//        addHoleToCourse(new Hole(handler,"res/holes/Hole_4.txt"));
+        players = new ArrayList<Player>();
+        players.add(new Player("Neil"));
+        golfCourse = new Course(handler, players);
+        golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_1.txt"));
+        golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_2.txt"));
 
-        currentHole = holesInCourse.remove();
-        ball = new GolfBall(handler, currentHole);
-        //ball = new BowlingBall(handler, currentHole,40);
 
+        totalScoreCounter = new UITextButton(handler.getWidth() * 17.5 / 20, handler.getHeight() * 1 / 20 * 1, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+            @Override
+            public void onClick() {
+            }
+        });
+        uiManager.addObject(totalScoreCounter);
+        strokeCounter = new UITextButton(handler.getWidth() * 16.5 / 20, handler.getHeight() * 1 / 20 * 3, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+            @Override
+            public void onClick() {
+            }
+        });
+        uiManager.addObject(strokeCounter);
     }
 
     @Override
     public void tick() {
-        currentHole.tick();
-        if(!currentHole.holeComplete()) ball.tick();
-        else if(holesInCourse.size() != 0) {
-            totalScore += ball.getScore();
-            System.out.println(totalScore);
-            currentHole = holesInCourse.remove();
-            ball = new GolfBall(handler, currentHole);
-            //ball = new BowlingBall(handler, currentHole, 40);
+
+        if(!golfCourse.isCourseComplete()) {
+            golfCourse.tick();
+            for(Player player:players) {
+                totalScoreCounter.setText("Strokes: " + String.valueOf(player.getStrokes()));
+                strokeCounter.setText("Total Score: " + String.valueOf(player.getTotalScore()));
+            }
         }
         else handler.setCurrentState(handler.getGame().getEndState());
     }
+
     @Override
     public void render(Graphics g) {
-        currentHole.render(g);
-        ball.render(g);
-    }
-
-    public Hole getCurrentHole() {
-        return currentHole;
-    }
-    public Ball getBall() {
-        return ball;
-    }
-    private void addHoleToCourse(Hole hole) {
-        holesInCourse.add(hole);
+        golfCourse.render(g);
+        uiManager.render(g);
     }
 }

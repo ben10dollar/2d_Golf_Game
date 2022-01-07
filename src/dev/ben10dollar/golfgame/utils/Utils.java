@@ -53,21 +53,17 @@ public class Utils {
         g2d.drawImage(image, transform, null);
     }
 
-    public static int[] drawString(Graphics g, String text, int xPos, int yPos, boolean center, Color c, Font font){
+    public static void drawString(Graphics g, Rectangle bounds, String text, int xPos, int yPos, boolean center, Color c, Font font){
         g.setColor(c);
         g.setFont(font);
         int x = xPos;
         int y = yPos;
-        int[] textMeasurements = new int[2];
         if(center){
             FontMetrics fm = g.getFontMetrics(font);
-            textMeasurements[0] = fm.stringWidth(text);
-            x = xPos - textMeasurements[0]/2;
-            textMeasurements[1] = fm.getHeight();
-            y = (yPos - textMeasurements[1]/2) + fm.getAscent();
+            x = xPos - fm.stringWidth(text)/2;
+            y = (yPos - fm.getHeight()/2) + fm.getAscent();
         }
         g.drawString(text, x, y);
-        return textMeasurements;
     }
 
     public static Font loadFont(String path, float size){

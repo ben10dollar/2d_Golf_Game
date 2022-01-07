@@ -1,15 +1,11 @@
 package dev.ben10dollar.golfgame.input;
 
-import dev.ben10dollar.golfgame.Game;
-import dev.ben10dollar.golfgame.states.GameState;
 import dev.ben10dollar.golfgame.user_interface.UIManager;
 import dev.ben10dollar.golfgame.utils.Handler;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
-import java.math.*;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
 
@@ -24,7 +20,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Coordinates: " + mouseX + ", " + mouseY);
+//        System.out.println("Coordinates: " + mouseX + ", " + mouseY);
     }
 
     @Override

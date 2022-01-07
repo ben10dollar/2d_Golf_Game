@@ -19,8 +19,8 @@ public class Handler {
     }
 
     public Game getGame() { return game; }
-    public Hole getHole() { return game.getGameState().getCurrentHole(); }
-    public Ball getBall() { return game.getGameState().getBall(); }
+//    public Hole getHole() { return game.getGameState().getCurrentHole(); }
+//    public Ball getBall() { return game.getGameState().getBall(); }
     public int getWidth() { return game.getWidth(); }
     public int getHeight() { return game.getHeight(); }
     public Camera getCamera() { return game.getCamera(); }

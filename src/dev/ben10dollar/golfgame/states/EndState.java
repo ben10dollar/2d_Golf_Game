@@ -25,13 +25,13 @@ public class EndState extends State {
                 System.out.println("You Won!");
             }
         }));
-        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/2, 0, 50, "Play Again", true, Color.LIGHT_GRAY, Assets.font56, new ClickListener() {
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/2, 0, 50, "Play Again", true, Color.ORANGE, Assets.font56, new ClickListener() {
             @Override
             public void onClick() {
                 handler.setCurrentState(handler.getGame().getMenuState());
             }
         }));
-        
+
     }
 
     @Override
