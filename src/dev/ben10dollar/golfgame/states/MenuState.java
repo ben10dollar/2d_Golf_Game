@@ -19,13 +19,13 @@ public class MenuState extends State {
             public void onClick() {
             }
         }));
-        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/4, 100, 50, "Golphers", false, Color.BLUE, Assets.font56, new ClickListener() {
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/4, 0, 0, "Golphers!", true, Color.GREEN, Assets.font84, new ClickListener() {
             @Override
             public void onClick() {
                 System.out.println("Golphers");
             }
         }));
-        uiManager.addObject(new UIImageButton(handler.getGame().getWidth()/2 - Assets.gameTileWidth * 40 / 2, handler.getGame().getHeight()/2, Assets.gameTileWidth * 40, Assets.gameTileHeight * 20, Assets.startButton, new ClickListener() {
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/2, 0, 0, "Start", true, Color.LIGHT_GRAY, Assets.font56, new ClickListener() {
             @Override
             public void onClick() {
                 handler.getGame().setGameState(new GameState(handler));

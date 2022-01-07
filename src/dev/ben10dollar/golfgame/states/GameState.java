@@ -3,7 +3,6 @@ package dev.ben10dollar.golfgame.states;
 import dev.ben10dollar.golfgame.entities.GolfBall;
 import dev.ben10dollar.golfgame.entities.Ball;
 import dev.ben10dollar.golfgame.graphics.Assets;
-import dev.ben10dollar.golfgame.graphics.Text;
 import dev.ben10dollar.golfgame.holes.Hole;
 import dev.ben10dollar.golfgame.user_interface.ClickListener;
 import dev.ben10dollar.golfgame.user_interface.UIImageButton;
