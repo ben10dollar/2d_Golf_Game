@@ -10,6 +10,7 @@ import dev.ben10dollar.golfgame.user_interface.UITextButton;
 import dev.ben10dollar.golfgame.utils.Handler;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GameState extends State {
@@ -18,7 +19,8 @@ public class GameState extends State {
     private Course golfCourse;
     //    private Hole currentHole;
 //    private Ball ball;
-    private UITextButton totalScoreCounter, strokeCounter, momentum, kineticEnergy;
+    private UITextButton totalScoreCounter, strokeCounter, holePar;
+    private UITextButton momentum, kineticEnergy;
 
     public GameState(Handler handler) {
         super(handler);
@@ -26,29 +28,42 @@ public class GameState extends State {
         players = new ArrayList<Player>();
         players.add(new Player("Neil"));
         golfCourse = new Course(handler, players);
-        golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_1.txt"));
-        golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_2.txt"));
+        //golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_1.txt"));
+        golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_eric.txt"));
 
 
-        totalScoreCounter = new UITextButton(handler.getWidth() * 17.5 / 20, handler.getHeight() * 1 / 20 * 1, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+
+        //right side top
+        totalScoreCounter = new UITextButton(handler.getWidth() * 16.0 / 20.0, handler.getHeight() * 1 / 20 * 1, 0, 0, "Total Score: 0", true, Color.BLACK, Assets.font28, new ClickListener() {
             @Override
             public void onClick() {
             }
         });
         uiManager.addObject(totalScoreCounter);
-        strokeCounter = new UITextButton(handler.getWidth() * 16.5 / 20, handler.getHeight() * 1 / 20 * 3, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+        strokeCounter = new UITextButton(handler.getWidth() * 16.5 / 20.0, handler.getHeight() * 1 / 20 * 3, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
             @Override
             public void onClick() {
             }
         });
         uiManager.addObject(strokeCounter);
-        momentum = new UITextButton(handler.getWidth() * 16.5 / 20, handler.getHeight() * 1 / 20 * 5, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+
+        holePar = new UITextButton(handler.getWidth() * 16.5 / 20.0, handler.getHeight() * 1 / 20 * 5, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+            @Override
+            public void onClick() {
+            }
+        });
+        uiManager.addObject(holePar);
+
+
+
+        //right side bottom
+        momentum = new UITextButton(handler.getWidth() * 16.0 / 20.0, handler.getHeight() * 1 / 20 * 17, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
             @Override
             public void onClick() {
             }
         });
         uiManager.addObject(momentum);
-        kineticEnergy = new UITextButton(handler.getWidth() * 16.5 / 20, handler.getHeight() * 1 / 20 * 7, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+        kineticEnergy = new UITextButton(handler.getWidth() * 16.0 / 20.0, handler.getHeight() * 1 / 20 * 19, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
             @Override
             public void onClick() {
             }
@@ -62,10 +77,13 @@ public class GameState extends State {
         if(!golfCourse.isCourseComplete()) {
             golfCourse.tick();
             for(Player player:players) {
-                strokeCounter.setText("Total Score: " + String.valueOf(player.getTotalScore()));
+                totalScoreCounter.setText("Total Score: " + String.valueOf(player.getTotalScore()));
             }
         }
-        else handler.setCurrentState(handler.getGame().getEndState());
+        else {
+            if(handler.getGame().getEndState() == null) handler.getGame().setEndState(new EndState(handler));
+            handler.getGame().setCurrentState(handler.getGame().getEndState());
+        }
     }
 
     @Override
@@ -77,5 +95,9 @@ public class GameState extends State {
 
     public UIManager getUIManager() {
         return uiManager;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 }

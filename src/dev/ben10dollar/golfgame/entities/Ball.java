@@ -36,8 +36,8 @@ public abstract class Ball extends Entity {
     public void tick() {
         if(!ballInHole) {
             ((UITextButton)handler.getCurrentState().getUiManager().getObject(1)).setText("Strokes: " + String.valueOf(strokes));
-            ((UITextButton)handler.getCurrentState().getUiManager().getObject(2)).setText("Velocity): " + String.valueOf((int)Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2))));
-            ((UITextButton)handler.getCurrentState().getUiManager().getObject(3)).setText("KE (kJ): " + String.valueOf((int)(1.0/2.0*mass*(Math.pow(velocityX, 2) + Math.pow(velocityY, 2))/1000)));
+            ((UITextButton)handler.getCurrentState().getUiManager().getObject(3)).setText("Velocity: " + String.valueOf((int)Math.sqrt(Math.pow(velocityX, 2) + Math.pow(velocityY, 2))) + " m/s");
+            ((UITextButton)handler.getCurrentState().getUiManager().getObject(4)).setText("Kinetic E: " + String.valueOf((int)(1.0/2.0*mass*(Math.pow(velocityX, 2) + Math.pow(velocityY, 2))/1000)) + " kJ");
             if(velocityX == 0 && velocityY == 0 && handler.getMouseManager().isLeftPressed()) {
                 velocityX = (handler.getMouseManager().getMouseX() - (x + width / 2 - handler.getCamera().getOffsetX())) / Tile.TILE_WIDTH * Physics.FORCE_X_PER_TILE_FROM_BALL / mass;
                 velocityY = (handler.getMouseManager().getMouseY() - (y + height / 2 - handler.getCamera().getOffsetY())) / Tile.TILE_HEIGHT * Physics.FORCE_Y_PER_TILE_FROM_BALL / mass;
@@ -108,7 +108,7 @@ public abstract class Ball extends Entity {
         if(collisionWithWall((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
                 collisionWithWall((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
             velocityX *= -1;
-            velocityX *= 2.0/3.0;
+//            velocityX *= 2.0/3.0;
             x += deltaX();
         }
         else if(collisionWithBouncePad((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
@@ -154,7 +154,7 @@ public abstract class Ball extends Entity {
         if(collisionWithWall((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
                 collisionWithWall((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
             velocityY *= -1;
-            velocityY *= 2.0/3.0;
+//            velocityY *= 2.0/3.0;
             y += deltaY();
         }
         else if(collisionWithBouncePad((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
@@ -196,13 +196,13 @@ public abstract class Ball extends Entity {
     }
     private void changeVelocityX() {
         if(velocityX == 0) return; //friction doesn't act on stationary objects
-        double deltaVelocityX = Physics.kineticFriction(deltaX(), deltaY(), hole.getTile((int)x / Tile.TILE_WIDTH, (int)y / Tile.TILE_HEIGHT).getCoefficientOfKineticFriction(), mass)[0] / mass * (1 / (double)handler.getTargetFPS());
+        double deltaVelocityX = Physics.kineticFriction(deltaX(), deltaY(), hole.getTile((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)(y + bounds.y) / Tile.TILE_HEIGHT).getCoefficientOfKineticFriction(), mass)[0] / mass * (1 / (double)handler.getTargetFPS());
         if((velocityX + deltaVelocityX) / velocityX < 0) velocityX = 0; //check if velocity is about to change signs. If it is, set velocity to 0 instead
         else velocityX += deltaVelocityX;
     }
     private void changeVelocityY() {
         if(velocityY == 0) return; //friction doesn't act on stationary objects
-        double deltaVelocityY = Physics.kineticFriction(deltaX(), deltaY(), hole.getTile(((int)x / Tile.TILE_WIDTH), (int)y / Tile.TILE_HEIGHT).getCoefficientOfKineticFriction(), mass)[1] / mass * (1 / (double)handler.getTargetFPS());
+        double deltaVelocityY = Physics.kineticFriction(deltaX(), deltaY(), hole.getTile(((int)(x + bounds.x) / Tile.TILE_WIDTH), (int)(y + bounds.y) / Tile.TILE_HEIGHT).getCoefficientOfKineticFriction(), mass)[1] / mass * (1 / (double)handler.getTargetFPS());
         if((velocityY + deltaVelocityY) / velocityY < 0) velocityY = 0; //check if velocity is about to change signs. If it is, set velocity to 0 instead
         else velocityY += deltaVelocityY;
     }
@@ -245,7 +245,7 @@ public abstract class Ball extends Entity {
         return strokes;
     }
     public int getScore() {
-        return hole.getPar() - strokes;
+        return strokes - hole.getPar();
     }
     public boolean isBallInHole() {
         return ballInHole;

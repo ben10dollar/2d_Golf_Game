@@ -4,6 +4,7 @@ import dev.ben10dollar.golfgame.entities.Ball;
 import dev.ben10dollar.golfgame.entities.Entity;
 import dev.ben10dollar.golfgame.graphics.Camera;
 import dev.ben10dollar.golfgame.tiles.Tile;
+import dev.ben10dollar.golfgame.user_interface.UITextButton;
 import dev.ben10dollar.golfgame.utils.Handler;
 import dev.ben10dollar.golfgame.utils.Utils;
 
@@ -34,6 +35,7 @@ public class Hole {
         for(Entity entity:entities) {
             entity.tick();
         }
+        ((UITextButton)handler.getCurrentState().getUiManager().getObject(2)).setText("Par: " + String.valueOf(par));
     }
     public void render(Graphics g) {
         for(int y=0; y < height; y++) {
@@ -63,7 +65,6 @@ public class Hole {
                 tiles[y][x] = holeData[(y * width + x) + 5].charAt(0);
             }
         }
-
     }
     public Tile getTile(int x, int y) {
         if(x < 0 || x >= width || y < 0 || y >= height) return Tile.getTile('d');

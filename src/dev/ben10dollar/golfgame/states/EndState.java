@@ -19,10 +19,14 @@ public class EndState extends State {
             }
         }));
 
-        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/4, 0, 100, "You Won!", true, Color.GREEN, Assets.font84, new ClickListener() {
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/4, 0, 100, "You Won!", true, Color.BLUE, Assets.font84, new ClickListener() {
             @Override
             public void onClick() {
-                System.out.println("You Won!");
+            }
+        }));
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth() * 3.0/8.0, 0, 100, "Score: " + String.valueOf(handler.getGame().getGameState().getPlayers().get(0).getTotalScore()), true, Color.GREEN, Assets.font56, new ClickListener() {
+            @Override
+            public void onClick() {
             }
         }));
         uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/2, 0, 50, "Play Again", true, Color.ORANGE, Assets.font56, new ClickListener() {

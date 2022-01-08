@@ -81,7 +81,7 @@ public class Game implements Runnable {
         display.getCanvas().addMouseMotionListener(mouseManager);
 
         menuState = new MenuState(handler);
-        endState = new EndState(handler);
+//        endState = new EndState(handler);
 //        settingsState = new SettingsState(handler);
         setCurrentState(menuState);
 
@@ -210,5 +210,8 @@ public class Game implements Runnable {
     }
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
+    }
+    public void setEndState(EndState endState) {
+        this.endState = endState;
     }
 }
