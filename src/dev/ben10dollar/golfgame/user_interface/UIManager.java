@@ -22,7 +22,7 @@ public class UIManager {
     }
     public void render(Graphics g){
         for(UIObject o:objects)
-            o.render(g);
+            o.renderIfVisible(g);
     }
     public void onMouseMove(MouseEvent e){
         for(UIObject o:objects)
@@ -45,14 +45,23 @@ public class UIManager {
     public Handler getHandler() {
         return handler;
     }
+    public ArrayList<UIObject> getObjects() {
+        return objects;
+    }
     public UIObject getObject(int index) {
         return objects.get(index);
+    }
+    public boolean isObjectVisible(int index) {
+        return objects.get(index).isVisible();
     }
     public void setHandler(Handler handler) {
         this.handler = handler;
     }
     public void setObjects(ArrayList<UIObject> objects) {
         this.objects = objects;
+    }
+    public void setObjectVisible(int index, boolean visible) {
+        objects.get(index).setVisible(visible);
     }
 
 }

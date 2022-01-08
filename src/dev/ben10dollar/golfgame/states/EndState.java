@@ -13,23 +13,23 @@ public class EndState extends State {
     public EndState(Handler handler) {
         super(handler);
 
-        uiManager.addObject(new UIImageButton(0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), Assets.background, new ClickListener() {
+        uiManager.addObject(new UIImageButton(0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), true, Assets.background, new ClickListener() {
             @Override
             public void onClick() {
             }
         }));
 
-        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/4, 0, 100, "You Won!", true, Color.BLUE, Assets.font84, new ClickListener() {
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/4, 0, 100, true,"You Won!", true, Color.BLUE, Assets.font84, new ClickListener() {
             @Override
             public void onClick() {
             }
         }));
-        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth() * 3.0/8.0, 0, 100, "Score: " + String.valueOf(handler.getGame().getGameState().getPlayers().get(0).getTotalScore()), true, Color.GREEN, Assets.font56, new ClickListener() {
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth() * 3.0/8.0, 0, 100, true,"Score: " + String.valueOf(handler.getGame().getGameState().getPlayers().get(0).getTotalScore()), true, Color.GREEN, Assets.font56, new ClickListener() {
             @Override
             public void onClick() {
             }
         }));
-        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/2, 0, 50, "Play Again", true, Color.ORANGE, Assets.font56, new ClickListener() {
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/2, 0, 50, true, "Play Again", true, Color.ORANGE, Assets.font56, new ClickListener() {
             @Override
             public void onClick() {
                 handler.setCurrentState(handler.getGame().getMenuState());

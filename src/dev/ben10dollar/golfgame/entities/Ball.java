@@ -114,7 +114,7 @@ public abstract class Ball extends Entity {
         else if(collisionWithBouncePad((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
                 collisionWithBouncePad((int)nextX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
             velocityX *= -1;
-            velocityX *= 2;
+            velocityX *= 1.5;
             x += deltaX();
         }
         else if(landedInWater((int)nextX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) ||
@@ -160,7 +160,7 @@ public abstract class Ball extends Entity {
         else if(collisionWithBouncePad((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||
                 collisionWithBouncePad((int)(x + bounds.x + bounds.width) / Tile.TILE_WIDTH, (int)nextY)) {
             velocityY *= -1;
-            velocityY *= 2;
+            velocityY *= 1.5;
             y += deltaY();
         }
         else if(landedInWater((int)(x + bounds.x) / Tile.TILE_WIDTH, (int)nextY) ||

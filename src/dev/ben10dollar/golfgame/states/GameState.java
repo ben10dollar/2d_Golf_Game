@@ -6,6 +6,7 @@ import dev.ben10dollar.golfgame.holes.Hole;
 import dev.ben10dollar.golfgame.holes.Player;
 import dev.ben10dollar.golfgame.user_interface.ClickListener;
 import dev.ben10dollar.golfgame.user_interface.UIManager;
+import dev.ben10dollar.golfgame.user_interface.UIObject;
 import dev.ben10dollar.golfgame.user_interface.UITextButton;
 import dev.ben10dollar.golfgame.utils.Handler;
 
@@ -21,6 +22,7 @@ public class GameState extends State {
 //    private Ball ball;
     private UITextButton totalScoreCounter, strokeCounter, holePar;
     private UITextButton momentum, kineticEnergy;
+    private UITextButton showInfo;
 
     public GameState(Handler handler) {
         super(handler);
@@ -29,25 +31,28 @@ public class GameState extends State {
         players.add(new Player("Neil"));
         golfCourse = new Course(handler, players);
         //golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_1.txt"));
+        //golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_2.txt"));
+        golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_3.txt"));
+        golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_4.txt"));
         golfCourse.holeAdd(new Hole(handler, "res/holes/Hole_eric.txt"));
 
 
 
         //right side top
-        totalScoreCounter = new UITextButton(handler.getWidth() * 16.0 / 20.0, handler.getHeight() * 1 / 20 * 1, 0, 0, "Total Score: 0", true, Color.BLACK, Assets.font28, new ClickListener() {
+        totalScoreCounter = new UITextButton(handler.getWidth() * 16.0 / 20.0, handler.getHeight() * 1 / 20 * 1, 0, 0, true,"Total Score: 0", true, Color.BLACK, Assets.font28, new ClickListener() {
             @Override
             public void onClick() {
             }
         });
         uiManager.addObject(totalScoreCounter);
-        strokeCounter = new UITextButton(handler.getWidth() * 16.5 / 20.0, handler.getHeight() * 1 / 20 * 3, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+        strokeCounter = new UITextButton(handler.getWidth() * 16.5 / 20.0, handler.getHeight() * 1 / 20 * 3, 0, 0, true, "", true, Color.BLACK, Assets.font28, new ClickListener() {
             @Override
             public void onClick() {
             }
         });
         uiManager.addObject(strokeCounter);
 
-        holePar = new UITextButton(handler.getWidth() * 16.5 / 20.0, handler.getHeight() * 1 / 20 * 5, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+        holePar = new UITextButton(handler.getWidth() * 16.5 / 20.0, handler.getHeight() * 1 / 20 * 5, 0, 0, true,"", true, Color.BLACK, Assets.font28, new ClickListener() {
             @Override
             public void onClick() {
             }
@@ -57,25 +62,39 @@ public class GameState extends State {
 
 
         //right side bottom
-        momentum = new UITextButton(handler.getWidth() * 16.0 / 20.0, handler.getHeight() * 1 / 20 * 17, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+        momentum = new UITextButton(handler.getWidth() * 16.0 / 20.0, handler.getHeight() * 1 / 20 * 17, 0, 0, true, "", true, Color.BLACK, Assets.font28, new ClickListener() {
             @Override
             public void onClick() {
             }
         });
         uiManager.addObject(momentum);
-        kineticEnergy = new UITextButton(handler.getWidth() * 16.0 / 20.0, handler.getHeight() * 1 / 20 * 19, 0, 0, "", true, Color.BLACK, Assets.font28, new ClickListener() {
+        kineticEnergy = new UITextButton(handler.getWidth() * 16.0 / 20.0, handler.getHeight() * 1 / 20 * 19, 0, 0, true,"", true, Color.BLACK, Assets.font28, new ClickListener() {
             @Override
             public void onClick() {
             }
         });
         uiManager.addObject(kineticEnergy);
+
+
+
+        //left side bottom
+        showInfo = new UITextButton(handler.getWidth() * 4.0 / 20.0, handler.getHeight() * 1 / 20 * 17, 0, 0, true,"Show Info", true, Color.BLACK, Assets.font28, new ClickListener() {
+            @Override
+            public void onClick() {
+                for(UIObject uiObject:uiManager.getObjects()) {
+                    if(uiObject != showInfo)
+                        uiObject.setVisible(!uiObject.isVisible());
+                }
+            }
+        });
+        uiManager.addObject(showInfo);
     }
 
     @Override
     public void tick() {
 
         if(!golfCourse.isCourseComplete()) {
-            golfCourse.tick();
+            if(!showInfo.isHovering()) golfCourse.tick();
             for(Player player:players) {
                 totalScoreCounter.setText("Total Score: " + String.valueOf(player.getTotalScore()));
             }

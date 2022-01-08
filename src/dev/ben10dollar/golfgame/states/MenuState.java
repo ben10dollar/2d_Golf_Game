@@ -14,18 +14,18 @@ public class MenuState extends State {
     public MenuState(Handler handler) {
         super(handler);
 
-        uiManager.addObject(new UIImageButton(0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), Assets.background, new ClickListener() {
+        uiManager.addObject(new UIImageButton(0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), true, Assets.background, new ClickListener() {
             @Override
             public void onClick() {
             }
         }));
-        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/4, 0, 0, "Golphers!", true, Color.GREEN, Assets.font84, new ClickListener() {
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/4, 0, 0, true,"Golphers!", true, Color.GREEN, Assets.font84, new ClickListener() {
             @Override
             public void onClick() {
                 System.out.println("Golphers");
             }
         }));
-        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/2, 0, 0, "Start", true, Color.ORANGE, Assets.font56, new ClickListener() {
+        uiManager.addObject(new UITextButton(handler.getGame().getWidth()/2, handler.getWidth()/2, 0, 0, true,"Start", true, Color.ORANGE, Assets.font56, new ClickListener() {
             @Override
             public void onClick() {
                 handler.getGame().setGameState(new GameState(handler));

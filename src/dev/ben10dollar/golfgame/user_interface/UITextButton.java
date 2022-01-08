@@ -13,8 +13,8 @@ public class UITextButton extends UIObject{
     private Font font;
     private ClickListener clicker;
 
-    public UITextButton(double x, double y, int width, int height, String text, boolean center, Color color, Font font, ClickListener clicker) {
-        super(x, y, width, height);;
+    public UITextButton(double x, double y, int width, int height, boolean visible, String text, boolean center, Color color, Font font, ClickListener clicker) {
+        super(x, y, width, height, visible);;
         this.text = text;
         this.center = center;
         this.color = color;
@@ -27,7 +27,7 @@ public class UITextButton extends UIObject{
 
     }
     @Override
-    public void render(Graphics g) {
+    protected void render(Graphics g) {
         FontMetrics fm = g.getFontMetrics(font);
         g.setColor(Color.LIGHT_GRAY);
 

@@ -8,8 +8,8 @@ public class UIImageButton extends UIObject {
     private BufferedImage[] images;
     private ClickListener clicker;
 
-    public UIImageButton(double x, double y, int width, int height, BufferedImage[] images, ClickListener clicker) {
-        super(x, y, width, height);
+    public UIImageButton(double x, double y, int width, int height, boolean visible, BufferedImage[] images, ClickListener clicker) {
+        super(x, y, width, height, visible);
         this.images = images;
         this.clicker = clicker;
     }
